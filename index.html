@@ -51,7 +51,7 @@
     --gold: #C6A15B;
     --gold-soft: #E4CE9E;
     --turmeric: #D99A3D;   /* Day 1 — Haldi accent */
-    --maroon: #92403D;     /* Day 3 — Hindu wedding accent */
+    --royalblue: #100166;     /* Day 3 — Hindu wedding accent */
     --church-blue: #4F6B72;/* Day 2 — Church wedding accent */
     --ink: #33392C;
 
@@ -136,7 +136,7 @@
     letter-spacing: 0.05em; white-space: nowrap;
   }
   .monogram img{
-    height: clamp(40px, 8vw, 60px); /* Increased from 28-38px */
+    height: clamp(40px, 30vw, 100px); /* Increased from 28-38px */
     width: auto;
     display: block;
     mix-blend-mode: multiply; /* Makes white background disappear, keeps gold */
@@ -217,7 +217,7 @@
 
   .hero-logo{
     position:relative; z-index:1;
-    width: clamp(150px, 35vw, 280px); /* Increased from 100-200px */
+    width: clamp(250px, 50vw, 450px); /* Increased from 100-200px */
     height: auto;
     margin-bottom: clamp(20px, 4vw, 32px);
     display: flex;
@@ -356,7 +356,7 @@
   }
   .day-card[data-accent="turmeric"] .day-side{ background: linear-gradient(160deg, var(--turmeric), #C07F26); }
   .day-card[data-accent="church"] .day-side{ background: linear-gradient(160deg, var(--church-blue), #395158); }
-  .day-card[data-accent="maroon"] .day-side{ background: linear-gradient(160deg, var(--maroon), #6E2E2C); }
+  .day-card[data-accent="royalblue"] .day-side{ background: linear-gradient(160deg, #100166, #1e1a53); }
   .day-side .day-num{ font-size: clamp(10px, 2vw, 12px); letter-spacing:0.2em; text-transform:uppercase; opacity:0.85; font-weight:700; }
   .day-side .day-date{ font-family: var(--font-display); font-size: clamp(1.2rem, 4vw, 1.5rem); margin-top: 4px; }
   .day-side .day-name{ font-family: var(--font-display); font-size: clamp(1rem, 3vw, 1.15rem); opacity:0.95; margin-top: 6px; }
@@ -455,13 +455,37 @@
     .venue-card{ padding: 16px; gap: 16px; }
   }
 
-  /* ---------- Footer ---------- */
-  footer{
-    text-align:center; padding: clamp(40px, 8vw, 56px) clamp(16px, 4vw, 24px); color: var(--sage-deep);
-  }
-  footer .monogram{ font-size: clamp(20px, 5vw, 26px); margin-bottom: clamp(8px, 2vw, 10px); }
-  footer .monogram img{ height: clamp(35px, 8vw, 55px); width: auto; mix-blend-mode: multiply; }
-  footer .thanks{ font-size: clamp(12px, 2.5vw, 14px); }
+/* ---------- Footer ---------- */
+footer{
+  text-align: center; 
+  padding: clamp(40px, 8vw, 56px) clamp(16px, 4vw, 24px); 
+  color: var(--sage-deep);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+}
+
+footer .monogram{ 
+  font-size: clamp(20px, 5vw, 26px); 
+  margin-bottom: clamp(20px, 4vw, 32px);
+  width: clamp(250px, 50vw, 450px);  /* SAME as hero logo */
+  height: auto;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+footer .monogram img{ 
+  width: 100%;  /* Changed from height to width */
+  height: auto; 
+  mix-blend-mode: multiply; 
+}
+
+footer .thanks{ 
+  font-size: clamp(12px, 2.5vw, 14px); 
+  max-width: 520px;
+}
   
   @media (max-width: 480px){
     footer{ padding: 32px 16px; }
@@ -565,7 +589,7 @@
       <div class="story-row fade-in">
         <div class="story-photo">
           <!-- CUSTOMIZE: Replace "proposal.jpg" with your actual image filename (4:5 aspect ratio, 400x500px recommended) -->
-          <img src="proposal.jpg" alt="The proposal" style="width: 100%; height: 100%; object-fit: cover; border-radius: 6px; display: block;">
+          <img src="proposal-1.jpeg" alt="The proposal" style="width: 100%; height: 100%; object-fit: cover; border-radius: 6px; display: block;">
         </div>
         <div class="story-text">
           <p class="eyebrow">Chapter Two</p>
@@ -624,7 +648,7 @@ const CONFIG = {
   heroBackgroundUrl: "bg-01.jpg", // Hero background image
 
   // Used for the homepage countdown — set to your church wedding start (Nov 22, 2026, 3:00 PM)
-  countdownTarget: "2026-11-22T15:00:00",
+  countdownTarget: "2026-11-22T15:00:00+05:30",
 
   // Custom date display with locations for hero section
   // This overrides the automatic date range display
@@ -641,12 +665,12 @@ const CONFIG = {
     }
   },
 
-  // Add or remove days here. accent must be one of: "turmeric", "church", "maroon"
+  // Add or remove days here. accent must be one of: "turmeric", "church", "royalblue"
   // UPDATED DATES: Nov 21 (Haldi), Nov 22 (Church), Nov 28 (Hindu)
   days: [
     {
       dayLabel: "Day One",
-      date: "Friday, Nov 21, 2026",
+      date: "Saturday, Nov 21, 2026",
       accent: "turmeric",
       venueName: "MJ Avyanna Resort & Convention Centre",
       venueAddress: "Jigani - Anekal Rd, Suragajakkanahalli, Bengaluru, Karnataka",
@@ -670,13 +694,13 @@ const CONFIG = {
     },
     {
       dayLabel: "Day Two",
-      date: "Saturday, Nov 22, 2026",
+      date: "Sunday, Nov 22, 2026",
       name: "Church Wedding & Reception",
       accent: "church",
       venueName: "Wedding: St. Antony's Friary Church <br> Reception: St. Thomas Parish Hall",
       venueAddress: "Wedding: 85 Hosur Road, Koramangala, Bengaluru, Karnataka <br> Reception: Dharmaram College, 39/2 1st Main Rd, Bengaluru, Karnataka",
       description: "Join us as we exchange vows at St. Antony's Church, followed by an evening reception filled with music, dinner, and celebration.",
-      time: "Wedding 3:00 PM <br> Reception 7:00 PM",
+      time: "Wedding 3:00 PM <br> Reception 6:30 PM",
       // Multiple venues for this event
       multiVenue: true,
       venues: [
@@ -699,9 +723,9 @@ const CONFIG = {
     },
     {
       dayLabel: "Day Three",
-      date: "Sunday, Nov 28, 2026",
+      date: "Saturday, Nov 28, 2026",
       name: "Hindu Wedding Ceremony",
-      accent: "maroon",
+      accent: "royalblue",
       description: "A traditional Hindu wedding ceremony with sacred rituals, blessings from elders, and the joining of two families under one mandap.",
       time: "11:00 AM – 2:00 PM",
       venueName: "The Brook Serene",
