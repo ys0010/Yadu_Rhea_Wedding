@@ -389,11 +389,27 @@
     display: flex; gap: clamp(6px, 1.5vw, 10px); margin-top: clamp(10px, 2vw, 14px); flex-wrap: wrap;
   }
   .btn-small{
-    display: inline-block; padding: clamp(6px, 1vw, 8px) clamp(10px, 2vw, 14px);
-    border: 1px solid var(--gold); border-radius: 4px; font-size: clamp(10px, 2vw, 11px);
-    letter-spacing: 0.05em; color: var(--sage-deep); font-weight: 700;
-    background: transparent; cursor: pointer;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    gap: 6px;
+    padding: clamp(6px, 1vw, 8px) clamp(10px, 2vw, 14px);
+    border: 1px solid var(--gold); 
+    border-radius: 4px; 
+    font-size: clamp(10px, 2vw, 11px);
+    letter-spacing: 0.05em; 
+    color: var(--sage-deep); 
+    font-weight: 700;
+    background: transparent; 
+    cursor: pointer;
     transition: all 0.3s ease;
+  }
+
+  .btn-small svg{
+    width: 14px;
+    height: 14px;
+    flex-shrink: 0;
+    fill: currentColor;
   }
   .btn-small:hover{
     background: var(--gold-soft); color: var(--ink);
@@ -717,7 +733,7 @@ const CONFIG = {
   heroEyebrow: "Together with our families",
   
   // IMPROVEMENT #10: Hashtag for social media
-  hashtag: "#YaduAndRhea2026",
+  hashtag: "#DilHaaRheYa",
   
   heroBackgroundUrl: "bg-01.jpg",
   countdownTarget: "2026-11-22T15:00:00+05:30",
@@ -884,10 +900,13 @@ CONFIG.days.forEach((d, i) => {
           <div class="dress-chip">Dress Code: ${func.dressCode}</div>
           <!-- IMPROVEMENT #11: Add to Calendar Button -->
           <div class="event-actions">
-            <button class="btn-small" onclick="addToCalendar('${func.name}', '${d.date}', '${func.time}', '${d.venueName}')">📅 Add to Calendar</button>
+            <button class="btn-small" onclick="addToCalendar('${func.name}', '${d.date}', '${func.time}', '${d.venueName}')">
+              <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 640 640" aria-hidden="true">
+                <path d="M224 64C206.3 64 192 78.3 192 96L192 128L160 128C124.7 128 96 156.7 96 192L96 240L544 240L544 192C544 156.7 515.3 128 480 128L448 128L448 96C448 78.3 433.7 64 416 64C398.3 64 384 78.3 384 96L384 128L256 128L256 96C256 78.3 241.7 64 224 64zM96 288L96 480C96 515.3 124.7 544 160 544L480 544C515.3 544 544 515.3 544 480L544 288L96 288z"/>
+              </svg>
+              Add to Calendar
+            </button>
           </div>
-          <!-- IMPROVEMENT #10: Display Hashtag -->
-          <div class="hashtag-display" onclick="copyHashtag()">${CONFIG.hashtag}</div>
           ${func.dressCodeImages && func.dressCodeImages.length > 0 ? `
             <div class="dress-code-ref">
               ${func.dressCodeImages.map(img => `
@@ -924,10 +943,13 @@ CONFIG.days.forEach((d, i) => {
         <div class="dress-chip">Dress Code: ${d.dressCode}</div>
         <!-- IMPROVEMENT #11: Add to Calendar Button -->
         <div class="event-actions">
-          <button class="btn-small" onclick="addToCalendar('${d.name}', '${d.date}', '${d.time}', '${d.venueName}')">📅 Add to Calendar</button>
+          <button class="btn-small" onclick="addToCalendar('${d.name}', '${d.date}', '${d.time}', '${d.venueName}')">
+            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 640 640" aria-hidden="true">
+              <path d="M224 64C206.3 64 192 78.3 192 96L192 128L160 128C124.7 128 96 156.7 96 192L96 240L544 240L544 192C544 156.7 515.3 128 480 128L448 128L448 96C448 78.3 433.7 64 416 64C398.3 64 384 78.3 384 96L384 128L256 128L256 96C256 78.3 241.7 64 224 64zM96 288L96 480C96 515.3 124.7 544 160 544L480 544C515.3 544 544 515.3 544 480L544 288L96 288z"/>
+            </svg>
+            Add to Calendar
+          </button>
         </div>
-        <!-- IMPROVEMENT #10: Display Hashtag -->
-        <div class="hashtag-display" onclick="copyHashtag()">${CONFIG.hashtag}</div>
         ${d.dressCodeImages && d.dressCodeImages.length > 0 ? `
           <div class="dress-code-ref">
             ${d.dressCodeImages.map(img => `
