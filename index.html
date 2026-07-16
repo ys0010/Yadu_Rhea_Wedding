@@ -1105,7 +1105,7 @@ document.getElementById('shareInstagram').addEventListener('click', function() {
 });
 
 document.getElementById('shareWhatsApp').addEventListener('click', function() {
-  const message = `Join us for our wedding celebrations! 💕\n\n${CONFIG.hashtag}\n\n${window.location.href}`;
+  const message = `Join us for our wedding celebrations! \u{1F495}\n\n${CONFIG.hashtag}\n\n${window.location.href}`;
   const whatsappUrl = `https://wa.me/?text=${encodeURIComponent(message)}`;
   window.open(whatsappUrl, '_blank');
 });
