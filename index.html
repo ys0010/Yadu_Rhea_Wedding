@@ -8,57 +8,35 @@
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,500;0,600;1,500&family=Karla:wght@400;600;700&display=swap" rel="stylesheet">
 
-<!--
-  ============================================================
-  HOW TO CUSTOMIZE THIS SITE
-  ============================================================
-  1. Scroll to the <script> block near the bottom, find "const CONFIG = {"
-     Every piece of text on this site (names, dates, venues, dress codes,
-     story, RSVP deadline) comes from that one object. Edit it there —
-     you never need to touch the HTML/CSS to update your details.
-
-  2. LOGO: In CONFIG.logoUrl, add your logo file path or URL.
-     The logo now appears larger in the hero (main heading area).
-     Recommended size: 300-400px wide, PNG or SVG with transparent background.
-
-  3. BACKGROUND IMAGES: Each event day can have its own blurred background.
-     - Event Day 1 (Haldi): add to backgroundUrl property
-     - Event Day 2 (Church): add to backgroundUrl property  
-     - Event Day 3 (Hindu): add to backgroundUrl property
-     Recommended size: 1920x1080px (minimum 1200px wide)
-     The images will be automatically blurred and serve as backgrounds.
-
-  4. DRESS CODE IMAGES: For each event, you can add reference images showing
-     the suggested dress code style. Add to dressCodeImages array.
-     Recommended size: 300x400px (portrait orientation)
-
-  5. GOOGLE MAPS: In the venueNotes section, add googleMapsUrl property
-     with your venue's Google Maps embed URL. Get this from Google Maps
-     (Share > Embed a map > Copy the embed URL)
-
-  6. COLORS: All CSS variables at top of <style> block can be adjusted.
-
-  ============================================================
--->
-
 <style>
   :root{
-    /* ---- Palette ---- */
+    /* ---- Palette - Light Mode ---- */
     --ivory: #FAF6EC;
     --ivory-deep: #F1EAD9;
     --sage: #7C8A6E;
     --sage-deep: #47523C;
     --gold: #C6A15B;
     --gold-soft: #E4CE9E;
-    --turmeric: #D99A3D;   /* Day 1 — Haldi accent */
-    --madhuram: #003800;   /* Day 1 — madhuram accent */
-    --royalblue: #10006a;     /* Day 3 — Hindu wedding accent */
-    --church-blue: #4F6B72;/* Day 2 — Church wedding accent */
+    --turmeric: #D99A3D;
+    --madhuram: #003800;
+    --royalblue: #10006a;
+    --church-blue: #4F6B72;
     --ink: #33392C;
 
     /* ---- Type ---- */
     --font-display: 'Cormorant Garamond', serif;
     --font-body: 'Karla', sans-serif;
+  }
+
+  /* DARK MODE */
+  html.dark-mode {
+    --ivory: #1a1a1a;
+    --ivory-deep: #242424;
+    --sage: #a8b89f;
+    --sage-deep: #c9d5bc;
+    --gold: #d4b896;
+    --gold-soft: #6b5d4f;
+    --ink: #e8e8e8;
   }
 
   *{ box-sizing: border-box; margin:0; padding:0; }
@@ -70,6 +48,7 @@
     font-size: 16px;
     line-height: 1.7;
     overflow-x: hidden;
+    transition: background 0.3s ease, color 0.3s ease;
   }
   @media (prefers-reduced-motion: reduce){
     html{ scroll-behavior: auto; }
@@ -106,9 +85,8 @@
     line-height: 1.15;
   }
 
-  section{ padding: clamp(48px, 12vw, 96px) 0; position: relative; }
+  section{ padding: clamp(40px, 10vw, 80px) 0; position: relative; }
   
-  /* ---- Responsive Typography & Spacing ---- */
   @media (max-width: 480px){
     body{ font-size: 15px; }
     .wrap{ padding: 0 16px; }
@@ -125,7 +103,10 @@
     background: rgba(250,246,236,0.9);
     backdrop-filter: blur(8px);
     border-bottom: 1px solid var(--gold-soft);
-    transition: box-shadow .3s ease;
+    transition: box-shadow .3s ease, background 0.3s ease;
+  }
+  html.dark-mode .nav{
+    background: rgba(26,26,26,0.9);
   }
   .nav.scrolled{ box-shadow: 0 4px 20px rgba(71,82,60,0.08); }
   .nav-inner{
@@ -137,12 +118,12 @@
     letter-spacing: 0.05em; white-space: nowrap;
   }
   .monogram img{
-    height: clamp(40px, 30vw, 100px); /* Increased from 28-38px */
+    height: clamp(40px, 30vw, 100px);
     width: auto;
     display: block;
-    mix-blend-mode: multiply; /* Makes white background disappear, keeps gold */
+    mix-blend-mode: multiply;
   }
-  .nav-links{ display:flex; gap: clamp(20px, 4vw, 28px); }
+  .nav-links{ display:flex; gap: clamp(20px, 4vw, 28px); align-items: center; }
   .nav-links a{
     font-size: clamp(11px, 2.5vw, 13px); letter-spacing: 0.12em; text-transform: uppercase;
     color: var(--sage-deep); font-weight: 700; position:relative; padding: 4px 0;
@@ -153,8 +134,21 @@
     background: var(--gold); transition: width .25s ease;
   }
   .nav-links a:hover::after, .nav-links a:focus::after{ width:100%; }
+
+  /* Dark Mode Toggle Button */
+  .dark-mode-toggle{
+    background: none; border: none; cursor: pointer;
+    padding: 6px; margin: 0 12px;
+    min-height: 44px; min-width: 44px;
+    display: flex; align-items: center; justify-content: center;
+    color: var(--sage-deep);
+    font-size: clamp(18px, 5vw, 22px);
+    transition: transform 0.3s ease;
+  }
+  .dark-mode-toggle:hover{ transform: rotate(20deg); }
+
   .nav-toggle{
-    display: none !important; /* Hide hamburger menu completely */
+    display: none !important;
     background:none; border:none; cursor:pointer;
     padding: 6px; margin: -6px;
     min-height: 44px; min-width: 44px;
@@ -164,9 +158,9 @@
 
   @media (max-width: 768px){
     .nav-links{
-      position: static; /* Changed from absolute to static so it displays inline */
+      position: static;
       background: transparent;
-      flex-direction: row; /* Keep links horizontal */
+      flex-direction: row;
       gap: clamp(16px, 3vw, 20px);
       max-height: none;
       overflow: visible;
@@ -183,10 +177,10 @@
     .nav-inner{ padding: 10px 12px; }
     .monogram{ font-size: 16px; }
     .monogram img{ height: 24px; }
-    .nav-links a{ padding: 12px 16px; font-size: 11px; }
+    .dark-mode-toggle{ margin: 0 8px; }
   }
 
-  /* ---------- Divider motif (signature element) ---------- */
+  /* ---------- Divider motif ---------- */
   .kolam-divider{ display:flex; justify-content:center; margin: clamp(6px, 2vw, 8px) 0 0; opacity: 0.85; }
   .kolam-divider svg{ width: clamp(140px, 60vw, 220px); height: auto; }
 
@@ -201,14 +195,15 @@
     overflow:hidden;
   }
   .hero::before{
-    /* Overlay: semi-transparent dark to ensure text readability over background images */
     content:""; position:absolute; inset:0;
     background: rgba(250,246,236,0.75);
     backdrop-filter: blur(2px);
     pointer-events:none;
   }
+  html.dark-mode .hero::before{
+    background: rgba(26,26,26,0.85);
+  }
   .hero::after{
-    /* Soft botanical corner flourish, purely decorative */
     content:""; position:absolute; inset:0;
     background-image:
       radial-gradient(circle at 8% 12%, rgba(124,138,110,0.08) 0, transparent 22%),
@@ -218,7 +213,7 @@
 
   .hero-logo{
     position:relative; z-index:1;
-    width: clamp(250px, 50vw, 450px); /* Increased from 100-200px */
+    width: clamp(250px, 50vw, 450px);
     height: auto;
     margin-bottom: clamp(20px, 4vw, 32px);
     display: flex;
@@ -229,7 +224,7 @@
     max-width: 100%;
     height: auto;
     display: block;
-    mix-blend-mode: multiply; /* Makes white background disappear, keeps gold */
+    mix-blend-mode: multiply;
   }
 
   .hero .eyebrow{ position:relative; z-index:1; margin-bottom: clamp(12px, 2vw, 18px); }
@@ -253,7 +248,7 @@
   /* Countdown */
   .countdown{
     position:relative; z-index:1;
-    display:flex; gap: clamp(12px, 3vw, 18px); margin-top: clamp(24px, 5vw, 40px); flex-wrap: wrap; justify-content:center;
+    display:flex; gap: clamp(10px, 2.5vw, 16px); margin-top: clamp(16px, 3vw, 28px); flex-wrap: wrap; justify-content:center;
   }
   .countdown .unit{
     background: rgba(255,255,255,0.55);
@@ -262,6 +257,9 @@
     min-width: clamp(70px, 15vw, 82px); padding: clamp(12px, 2vw, 16px) clamp(8px, 2vw, 10px);
     text-align:center;
     touch-action: manipulation;
+  }
+  html.dark-mode .countdown .unit{
+    background: rgba(0,0,0,0.3);
   }
   .countdown .num{
     font-family: var(--font-display); font-size: clamp(1.5rem, 5vw, 2.1rem); color: var(--sage-deep); font-weight:600;
@@ -290,14 +288,14 @@
   }
 
   /* ---------- Section heading pattern ---------- */
-  .section-head{ text-align:center; max-width: 640px; margin: 0 auto clamp(36px, 8vw, 56px); }
+  .section-head{ text-align:center; max-width: 640px; margin: 0 auto clamp(28px, 6vw, 44px); }
   .section-head h2{ font-size: clamp(1.6rem, 5vw, 2.8rem); margin-top: clamp(8px, 2vw, 10px); }
   .section-head p{ margin-top: clamp(10px, 2vw, 14px); color: var(--sage-deep); font-size: clamp(14px, 3vw, 16px); }
 
   /* ---------- Our Story ---------- */
-  .story-rows{ display:flex; flex-direction: column; gap: clamp(40px, 10vw, 64px); }
+  .story-rows{ display:flex; flex-direction: column; gap: clamp(32px, 8vw, 48px); }
   .story-row{
-    display:grid; grid-template-columns: 1fr 1fr; gap: clamp(32px, 8vw, 48px); align-items:center;
+    display:grid; grid-template-columns: 1fr 1fr; gap: clamp(24px, 6vw, 36px); align-items:center;
   }
   .story-row:nth-child(even) .story-photo{ order:2; }
   .story-photo .photo-slot{
@@ -327,13 +325,16 @@
   }
 
   /* ---------- Event Day Cards ---------- */
-  .days{ display:flex; flex-direction:column; gap: clamp(28px, 6vw, 40px); }
+  .days{ display:flex; flex-direction:column; gap: clamp(20px, 5vw, 32px); }
   .day-card{
     border-radius: 10px; overflow:hidden;
     border: 1px solid var(--gold-soft);
     background: #fff;
     display:grid; grid-template-columns: clamp(160px, 25vw, 200px) 1fr;
     position: relative;
+  }
+  html.dark-mode .day-card{
+    background: var(--ivory-deep);
   }
   .day-card::before{
     content: '';
@@ -372,15 +373,38 @@
     font-size: clamp(9px, 2vw, 11px); letter-spacing:0.14em; text-transform:uppercase; color: var(--sage); font-weight:700;
   }
   .day-meta .item .v{ font-size: clamp(13px, 3vw, 15px); margin-top: 4px; }
+  
   .dress-chip{
-    display:inline-block; margin-top: clamp(12px, 3vw, 18px); padding: clamp(4px, 1vw, 6px) clamp(12px, 3vw, 16px);
+    display:inline-block; margin-top: clamp(8px, 2vw, 14px); padding: clamp(4px, 1vw, 6px) clamp(12px, 3vw, 16px);
     border: 1px solid var(--gold); border-radius: 100px; font-size: clamp(11px, 2vw, 12.5px);
     letter-spacing: 0.05em; color: var(--sage-deep); font-weight: 700;
   }
 
+  /* Action Buttons */
+  .event-actions{
+    display: flex; gap: clamp(6px, 1.5vw, 10px); margin-top: clamp(10px, 2vw, 14px); flex-wrap: wrap;
+  }
+  .btn-small{
+    display: inline-block; padding: clamp(6px, 1vw, 8px) clamp(10px, 2vw, 14px);
+    border: 1px solid var(--gold); border-radius: 4px; font-size: clamp(10px, 2vw, 11px);
+    letter-spacing: 0.05em; color: var(--sage-deep); font-weight: 700;
+    background: transparent; cursor: pointer;
+    transition: all 0.3s ease;
+  }
+  .btn-small:hover{
+    background: var(--gold-soft); color: var(--ink);
+  }
+
+  .hashtag-display:hover{
+    background: rgba(198, 161, 91, 0.25);
+  }
+  html.dark-mode .hashtag-display{
+    background: rgba(212, 184, 150, 0.15);
+  }
+
   /* ---------- Dress Code Reference Images ---------- */
   .dress-code-ref{
-    margin-top: clamp(14px, 3vw, 20px); display: flex; gap: clamp(12px, 3vw, 16px); flex-wrap: wrap;
+    margin-top: clamp(10px, 2vw, 16px); display: flex; gap: clamp(10px, 2.5vw, 14px); flex-wrap: wrap;
   }
   .dress-ref-img{
     width: clamp(80px, 18vw, 100px); height: clamp(110px, 25vw, 140px); border-radius: 8px; overflow: hidden;
@@ -388,12 +412,6 @@
   }
   .dress-ref-img img{
     width: 100%; height: 100%; object-fit: cover;
-  }
-  .dress-ref-placeholder{
-    background: linear-gradient(135deg, var(--ivory-deep), #E7DEC7);
-    display: flex; align-items: center; justify-content: center;
-    color: var(--sage); font-size: clamp(8px, 2vw, 10px); text-align: center; padding: 8px;
-    text-transform: uppercase; letter-spacing: 0.06em;
   }
 
   @media (max-width: 768px){
@@ -408,11 +426,14 @@
   }
 
   /* ---------- Venue & Travel ---------- */
-  .venue-grid{ display:flex; flex-direction:column; gap: clamp(20px, 5vw, 28px); }
+  .venue-grid{ display:flex; flex-direction:column; gap: clamp(16px, 4vw, 24px); }
   .venue-card{
     border: 1px solid var(--ivory-deep); border-radius: 10px; padding: clamp(20px, 5vw, 28px);
     background: var(--ivory);
     display:grid; grid-template-columns: 1fr 1fr; gap: clamp(20px, 5vw, 28px);
+  }
+  html.dark-mode .venue-card{
+    background: var(--ivory-deep);
   }
   .venue-card h4{ font-family: var(--font-display); font-size: clamp(1.1rem, 4vw, 1.3rem); color: var(--sage-deep); }
   .venue-card .addr{ margin-top: 6px; font-size: clamp(13px, 3vw, 15px); }
@@ -437,7 +458,6 @@
   .venue-card .multi-maps .map-wrapper{
     min-height: 250px;
   }
-  .venue-card .map-slot{ aspect-ratio: 16/10; border-radius: 6px; }
   .venue-notes{ margin-top: clamp(10px, 2vw, 14px); }
   .venue-notes .k{ font-size: clamp(9px, 2vw, 11px); letter-spacing:0.12em; text-transform:uppercase; color: var(--sage); font-weight:700; margin-top: clamp(10px, 2vw, 14px); }
   .venue-notes p{ font-size: clamp(13px, 2.5vw, 14.5px); margin-top: 4px; }
@@ -457,37 +477,60 @@
     .venue-card{ padding: 16px; gap: 16px; }
   }
 
-/* ---------- Footer ---------- */
-footer{
-  text-align: center; 
-  padding: clamp(40px, 8vw, 56px) clamp(16px, 4vw, 24px); 
-  color: var(--sage-deep);
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
-}
+  /* ---------- Footer ---------- */
+  footer{
+    text-align: center; 
+    padding: clamp(28px, 6vw, 40px) clamp(16px, 4vw, 24px); 
+    color: var(--sage-deep);
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+  }
 
-footer .monogram{ 
-  font-size: clamp(20px, 5vw, 26px); 
-  margin-bottom: clamp(20px, 4vw, 32px);
-  width: clamp(250px, 50vw, 450px);  /* SAME as hero logo */
-  height: auto;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-}
+  footer .monogram{ 
+    font-size: clamp(20px, 5vw, 26px); 
+    margin-bottom: clamp(12px, 2vw, 16px);
+    width: clamp(250px, 50vw, 450px);
+    height: auto;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
 
-footer .monogram img{ 
-  width: 100%;  /* Changed from height to width */
-  height: auto; 
-  mix-blend-mode: multiply; 
-}
+  footer .monogram img{ 
+    width: 100%;
+    height: auto; 
+    mix-blend-mode: multiply; 
+  }
 
-footer .thanks{ 
-  font-size: clamp(12px, 2.5vw, 14px); 
-  max-width: 520px;
-}
+  footer .thanks{ 
+    font-size: clamp(12px, 2.5vw, 14px); 
+    max-width: 520px;
+  }
+
+  .social-share{
+    margin-top: clamp(12px, 2vw, 16px); display: flex; gap: clamp(10px, 2vw, 14px); justify-content: center; flex-wrap: wrap;
+  }
+  .social-btn{
+    display: inline-flex; align-items: center; justify-content: center;
+    padding: clamp(8px, 1.5vw, 10px) clamp(12px, 2.5vw, 16px);
+    border: 1px solid var(--gold); border-radius: 50px; font-size: clamp(11px, 1.8vw, 12px);
+    color: var(--sage-deep); font-weight: 700; cursor: pointer;
+    transition: all 0.3s ease;
+    background: transparent;
+    gap: 6px;
+    min-height: 40px;
+    min-width: 40px;
+  }
+  .social-btn:hover{
+    background: var(--gold-soft); color: var(--ink); transform: translateY(-2px);
+  }
+  .social-btn svg{
+    width: 18px;
+    height: 18px;
+    fill: currentColor;
+  }
   
   @media (max-width: 480px){
     footer{ padding: 32px 16px; }
@@ -496,12 +539,10 @@ footer .thanks{
   .fade-in{ opacity:0; transform: translateY(18px); transition: opacity .7s ease, transform .7s ease; will-change: transform, opacity; }
   .fade-in.visible{ opacity:1; transform: translateY(0); }
   
-  /* ---------- Touch & Accessibility Improvements ---------- */
   @media (hover: hover) and (pointer: fine){
     a:hover, button:hover{ transition: all 0.25s ease; }
   }
   @media (hover: none) and (pointer: coarse){
-    /* Mobile touch adjustments */
     button, a[role="button"], .nav-toggle{
       min-height: 44px;
       min-width: 44px;
@@ -511,7 +552,6 @@ footer .thanks{
     }
   }
   
-  /* ---------- Ultra-small phones (<320px) fallback ---------- */
   @media (max-width: 360px){
     body{ font-size: 14px; }
     .wrap{ padding: 0 12px; }
@@ -525,7 +565,6 @@ footer .thanks{
 <nav class="nav" id="nav">
   <div class="nav-inner">
     <div class="monogram" id="nav-monogram">
-      <!-- Replace with your logo: add src="path/to/logo.png" or upload your logo file -->
       <img src="RY logo.png" alt="Logo" onerror="this.style.display='none'">
     </div>
     <button class="nav-toggle" id="navToggle" aria-label="Toggle menu" aria-expanded="false">
@@ -535,6 +574,10 @@ footer .thanks{
       <a href="#story">Our Story</a>
       <a href="#events">Celebrations</a>
       <a href="#venue">Venue</a>
+      <!-- Dark Mode Toggle -->
+      <button class="dark-mode-toggle" id="darkModeToggle" aria-label="Toggle dark mode" title="Toggle dark mode">
+        🌙
+      </button>
     </div>
   </div>
 </nav>
@@ -579,8 +622,8 @@ footer .thanks{
     <div class="story-rows">
       <div class="story-row fade-in">
         <div class="story-photo">
-          <!-- CUSTOMIZE: Replace "met.jpg" with your actual image filename (4:5 aspect ratio, 400x500px recommended) -->
-          <img src="met.jpg" alt="How we met" style="width: 100%; height: 100%; object-fit: cover; border-radius: 6px; display: block;">
+          <!-- OPTIMIZATION: Use loading="lazy" for performance, add srcset for different screen sizes -->
+          <img src="met.jpg" alt="How we met" loading="lazy" style="width: 100%; height: 100%; object-fit: cover; border-radius: 6px; display: block;">
         </div>
         <div class="story-text">
           <p class="eyebrow">Chapter One</p>
@@ -590,8 +633,8 @@ footer .thanks{
       </div>
       <div class="story-row fade-in">
         <div class="story-photo">
-          <!-- CUSTOMIZE: Replace "proposal.jpg" with your actual image filename (4:5 aspect ratio, 400x500px recommended) -->
-          <img src="proposal-1.jpeg" alt="The proposal" style="width: 100%; height: 100%; object-fit: cover; border-radius: 6px; display: block;">
+          <!-- OPTIMIZATION: Lazy load for performance -->
+          <img src="proposal-1.jpeg" alt="The proposal" loading="lazy" style="width: 100%; height: 100%; object-fit: cover; border-radius: 6px; display: block;">
         </div>
         <div class="story-text">
           <p class="eyebrow">Chapter Two</p>
@@ -629,37 +672,45 @@ footer .thanks{
 
 <footer>
   <div class="monogram" id="footer-monogram">
-    <!-- Same logo as navigation -->
     <img src="RY_Logo_caption.svg" alt="Logo" onerror="this.style.display='none'">
   </div>
   <p class="thanks">With love and gratitude for being part of our journey.</p>
+  
+  <!-- Social Share -->
+  <div class="social-share">
+    <button class="social-btn" id="shareInstagram" title="Share on Instagram">
+      <svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><rect x="2" y="2" width="20" height="20" rx="5" ry="5" fill="none" stroke="currentColor" stroke-width="2"/><circle cx="12" cy="12" r="3" fill="none" stroke="currentColor" stroke-width="2"/><circle cx="17.5" cy="6.5" r="1.5" fill="currentColor"/></svg>
+      Instagram
+    </button>
+    <button class="social-btn" id="shareWhatsApp" title="Share on WhatsApp">
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 640 640"><path d="M476.9 161.1C435 119.1 379.2 96 319.9 96C197.5 96 97.9 195.6 97.9 318C97.9 357.1 108.1 395.3 127.5 429L96 544L213.7 513.1C246.1 530.8 282.6 540.1 319.8 540.1L319.9 540.1C442.2 540.1 544 440.5 544 318.1C544 258.8 518.8 203.1 476.9 161.1zM319.9 502.7C286.7 502.7 254.2 493.8 225.9 477L219.2 473L149.4 491.3L168 423.2L163.6 416.2C145.1 386.8 135.4 352.9 135.4 318C135.4 216.3 218.2 133.5 320 133.5C369.3 133.5 415.6 152.7 450.4 187.6C485.2 222.5 506.6 268.8 506.5 318.1C506.5 419.9 421.6 502.7 319.9 502.7zM421.1 364.5C415.6 361.7 388.3 348.3 383.2 346.5C378.1 344.6 374.4 343.7 370.7 349.3C367 354.9 356.4 367.3 353.1 371.1C349.9 374.8 346.6 375.3 341.1 372.5C308.5 356.2 287.1 343.4 265.6 306.5C259.9 296.7 271.3 297.4 281.9 276.2C283.7 272.5 282.8 269.3 281.4 266.5C280 263.7 268.9 236.4 264.3 225.3C259.8 214.5 255.2 216 251.8 215.8C248.6 215.6 244.9 215.6 241.2 215.6C237.5 215.6 231.5 217 226.4 222.5C221.3 228.1 207 241.5 207 268.8C207 296.1 226.9 322.5 229.6 326.2C232.4 329.9 268.7 385.9 324.4 410C359.6 425.2 373.4 426.5 391 423.9C401.7 422.3 423.8 410.5 428.4 397.5C433 384.5 433 373.4 431.6 371.1C430.3 368.6 426.6 367.2 421.1 364.5z"/></svg>
+      WhatsApp
+    </button>
+  </div>
 </footer>
 
 <script>
 /* ============================================================
-   EDIT EVERYTHING HERE — this single object drives the whole page
+   CONFIG — Edit everything here
    ============================================================ */
 const CONFIG = {
   partner1: "Yadu",
   partner2: "Rhea",
-  logoUrl: "RY_Logo_caption.svg", // Your actual logo filename
+  logoUrl: "RY_Logo_caption.svg",
   heroTagline: "Two families, two traditions, and one love story — we can't wait to celebrate with you across three unforgettable days.",
   heroEyebrow: "Together with our families",
   
-  // BACKGROUND IMAGE FOR HERO — Optional
-  heroBackgroundUrl: "bg-01.jpg", // Hero background image
+  // IMPROVEMENT #10: Hashtag for social media
+  hashtag: "#DilHaaRheYa",
 
-  // Used for the homepage countdown — set to your church wedding start (Nov 22, 2026, 3:00 PM)
+  heroBackgroundUrl: "bg-01.jpg",
   countdownTarget: "2026-11-22T15:00:00+05:30",
-
-  // Custom date display with locations for hero section
-  // This overrides the automatic date range display
   customDateline: "Nov 21 & 22, 2026 in Bangalore | Nov 28, 2026 in Kollam",
 
   story: {
     met: {
       title: "How We Met",
-      text: "Our story began on Rhea’s very first day in Australia. As she was checking into the university accommodation, a mutual friend introduced us. What started as a simple introduction soon blossomed into a beautiful friendship, then love. Looking back, it's incredible how one ordinary moment became the beginning of our forever."
+      text: "Our story began on Rhea's very first day in Australia. As she was checking into the university accommodation, a mutual friend introduced us. What started as a simple introduction soon blossomed into a beautiful friendship, then love. Looking back, it's incredible how one ordinary moment became the beginning of our forever."
     },
     proposal: {
       title: "The Proposal",
@@ -667,8 +718,6 @@ const CONFIG = {
     }
   },
 
-  // Add or remove days here. accent must be one of: "turmeric", "church", "royalblue"
-  // UPDATED DATES: Nov 21 (Haldi), Nov 22 (Church), Nov 28 (Hindu)
   days: [
     {
       dayLabel: "Day One",
@@ -704,7 +753,6 @@ const CONFIG = {
       venueAddress: "Wedding: 85 Hosur Road, Koramangala, Bengaluru, Karnataka <br> Reception: Dharmaram College, 39/2 1st Main Rd, Bengaluru, Karnataka",
       description: "Join us as we exchange vows at St. Antony's Church, followed by an evening reception filled with music, dinner, and celebration.",
       time: "Wedding 3:00 PM <br> Reception 6:30 PM",
-      // Multiple venues for this event
       multiVenue: true,
       venues: [
         {
@@ -720,7 +768,7 @@ const CONFIG = {
           googleMapsUrl: "https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3888.63321908247!2d77.6027804!3d12.9312793!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x3bae15adcea908bf%3A0x497417fbf176f129!2sSt.%20Thomas%20Parish%20Hall!5e0!3m2!1sen!2sau!4v1784094388592!5m2!1sen!2sau"
         }
       ],
-      backgroundUrl: "", // Optional: path to event background image
+      backgroundUrl: "",
       dressCode: "Cocktail / Traditional Indian attire",
       dressCodeImages: []
     },
@@ -733,30 +781,29 @@ const CONFIG = {
       time: "11:00 AM – 2:00 PM",
       venueName: "The Brook Serene",
       venueAddress: "Kottiyam, Kollam, Kerala",
-      backgroundUrl: "", // Optional: path to event background image
+      backgroundUrl: "",
       dressCode: "Traditional Indian attire",
       dressCodeImages: []
     }
   ],
 
-  // Venue notes — accommodations info. Travel/transport removed as requested.
-  // ADD googleMapsUrl for Google Maps embed — see instructions below
   venueNotes: [
     {
-      googleMapsUrl: "https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3891.7403970737!2d77.67409459999999!3d12.7303514!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x3bae6f32ac396a8d%3A0x16346e574f13ee0f!2sMJ%20Avyanna%20Resort%20%26%20Convention%20Centre!5e0!3m2!1sen!2sau!4v1783650793862!5m2!1sen!2sau"  // e.g., "https://www.google.com/maps/embed?pb=..." (from Google Maps Share > Embed)
+      googleMapsUrl: "https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3891.7403970737!2d77.67409459999999!3d12.7303514!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x3bae6f32ac396a8d%3A0x16346e574f13ee0f!2sMJ%20Avyanna%20Resort%20%26%20Convention%20Centre!5e0!3m2!1sen!2sau!4v1783650793862!5m2!1sen!2sau"
     },
     {
       googleMapsUrl: "https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3888.651804495334!2d77.61171517577262!3d12.93008658738149!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x3bae145ba859c02b%3A0xe39cbb479e2cbffe!2sSt%20Anthony&#39;s%20Friary%20Church!5e0!3m2!1sen!2sau!4v1784091839098!5m2!1sen!2sau" 
     },
-    { googleMapsUrl: "https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3942.312885894337!2d76.675422!3d8.8504342!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x3b05e49ab739c129%3A0xc4dce99037f8721c!2sThe%20Brook%20Serene!5e0!3m2!1sen!2sau!4v1784091035650!5m2!1sen!2sau" 
+    { 
+      googleMapsUrl: "https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3942.312885894337!2d76.675422!3d8.8504342!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x3b05e49ab739c129%3A0xc4dce99037f8721c!2sThe%20Brook%20Serene!5e0!3m2!1sen!2sau!4v1784091035650!5m2!1sen!2sau" 
     }
   ]
 };
 
 /* ============================================================
-   RENDER — you shouldn't need to edit below this line
+   RENDER
    ============================================================ */
-// Set logo image in hero and nav
+// Set logo image
 const logoSrc = CONFIG.logoUrl || '';
 if (logoSrc) {
   document.getElementById('nav-monogram').querySelector('img').src = logoSrc;
@@ -764,7 +811,7 @@ if (logoSrc) {
   document.querySelector('.hero-logo img').src = logoSrc;
 }
 
-// Set hero background image
+// Set hero background
 if (CONFIG.heroBackgroundUrl) {
   document.getElementById('hero').style.backgroundImage = `url('${CONFIG.heroBackgroundUrl}')`;
 }
@@ -775,7 +822,6 @@ document.getElementById('hero-tagline').textContent = CONFIG.heroTagline;
 
 const firstDay = CONFIG.days[0];
 const lastDay = CONFIG.days[CONFIG.days.length - 1];
-// Use custom dateline if provided, otherwise auto-generate from dates
 const datelineText = CONFIG.customDateline || 
   (firstDay.date.split(',').slice(1).join(',').trim()) + (CONFIG.days.length > 1 ? ' – ' + lastDay.date.split(',').slice(1).join(',').trim() : '');
 document.getElementById('hero-dateline').textContent = datelineText;
@@ -785,10 +831,19 @@ document.getElementById('story1-text').textContent = CONFIG.story.met.text;
 document.getElementById('story2-title').textContent = CONFIG.story.proposal.title;
 document.getElementById('story2-text').textContent = CONFIG.story.proposal.text;
 
+// IMPROVEMENT #11: Add to Calendar function
+function addToCalendar(eventName, date, time, venue) {
+  // Parse date and time
+  const dateStr = date + ', ' + time.split('–')[0].trim();
+  const startTime = new Date(dateStr).toISOString();
+  
+  const calendarUrl = `https://calendar.google.com/calendar/render?action=TEMPLATE&text=${encodeURIComponent(eventName)}&dates=${startTime.replace(/[-:]/g, '').split('.')[0]}Z/${startTime.replace(/[-:]/g, '').split('.')[0]}Z&location=${encodeURIComponent(venue)}&details=${encodeURIComponent(CONFIG.hashtag)}`;
+  window.open(calendarUrl, '_blank');
+}
+
 // Render day cards
 const daysContainer = document.getElementById('days-container');
 CONFIG.days.forEach((d, i) => {
-  // If day has functions (like Day One with Haldi & Maduraveppu), render each function separately
   if (d.functions && d.functions.length > 0) {
     d.functions.forEach((func, fIdx) => {
       const card = document.createElement('div');
@@ -796,7 +851,6 @@ CONFIG.days.forEach((d, i) => {
       card.setAttribute('data-accent', func.accent || d.accent);
       if (d.backgroundUrl) {
         card.style.setProperty('--bg-image', `url('${d.backgroundUrl}')`);
-        card.firstElementChild?.style.setProperty('background-image', `url('${d.backgroundUrl}')`);
       }
       card.innerHTML = `
         <div class="day-side">
@@ -812,11 +866,15 @@ CONFIG.days.forEach((d, i) => {
             <div class="item"><div class="k">Venue</div><div class="v">${d.venueName}</div></div>
           </div>
           <div class="dress-chip">Dress Code: ${func.dressCode}</div>
+          <!-- IMPROVEMENT #11: Add to Calendar Button -->
+          <div class="event-actions">
+            <button class="btn-small" onclick="addToCalendar('${func.name}', '${d.date}', '${func.time}', '${d.venueName}')">📅 Add to Calendar</button>
+          </div>
           ${func.dressCodeImages && func.dressCodeImages.length > 0 ? `
             <div class="dress-code-ref">
               ${func.dressCodeImages.map(img => `
                 <div class="dress-ref-img">
-                  <img src="${img}" alt="Dress code reference">
+                  <img src="${img}" alt="Dress code reference" loading="lazy">
                 </div>
               `).join('')}
             </div>
@@ -826,7 +884,6 @@ CONFIG.days.forEach((d, i) => {
       daysContainer.appendChild(card);
     });
   } else {
-    // Regular day with single event
     const card = document.createElement('div');
     card.className = 'day-card fade-in';
     card.setAttribute('data-accent', d.accent);
@@ -847,11 +904,15 @@ CONFIG.days.forEach((d, i) => {
           <div class="item"><div class="k">Venue</div><div class="v">${d.venueName}</div></div>
         </div>
         <div class="dress-chip">Dress Code: ${d.dressCode}</div>
+        <!-- IMPROVEMENT #11: Add to Calendar Button -->
+        <div class="event-actions">
+          <button class="btn-small" onclick="addToCalendar('${d.name}', '${d.date}', '${d.time}', '${d.venueName}')">📅 Add to Calendar</button>
+        </div>
         ${d.dressCodeImages && d.dressCodeImages.length > 0 ? `
           <div class="dress-code-ref">
             ${d.dressCodeImages.map(img => `
               <div class="dress-ref-img">
-                <img src="${img}" alt="Dress code reference">
+                <img src="${img}" alt="Dress code reference" loading="lazy">
               </div>
             `).join('')}
           </div>
@@ -862,6 +923,14 @@ CONFIG.days.forEach((d, i) => {
   }
 });
 
+// IMPROVEMENT #10: Copy hashtag function
+function copyHashtag() {
+  const hashtag = CONFIG.hashtag;
+  navigator.clipboard.writeText(hashtag).then(() => {
+    alert(`Copied: ${hashtag}`);
+  });
+}
+
 // Render venue cards
 const venueContainer = document.getElementById('venue-container');
 CONFIG.days.forEach((d, i) => {
@@ -869,9 +938,7 @@ CONFIG.days.forEach((d, i) => {
   const card = document.createElement('div');
   card.className = 'venue-card fade-in';
   
-  // Check if day has multiple venues
   if (d.multiVenue && d.venues && d.venues.length > 0) {
-    // Multiple venues layout
     let venueLeftContent = `
       <div>
         <p class="eyebrow">${d.dayLabel} · ${d.date}</p>
@@ -879,7 +946,6 @@ CONFIG.days.forEach((d, i) => {
         <p style="font-size: clamp(13px, 3vw, 15px); margin-top: 12px; color: var(--sage); font-weight: 700;">Venues:</p>
     `;
     
-    // Add each venue info
     d.venues.forEach(v => {
       venueLeftContent += `
         <div style="margin-top: 16px;">
@@ -892,7 +958,6 @@ CONFIG.days.forEach((d, i) => {
     
     venueLeftContent += `</div>`;
     
-    // Create multi-map container
     let mapsContent = '<div class="multi-maps">';
     d.venues.forEach(v => {
       mapsContent += `
@@ -905,7 +970,6 @@ CONFIG.days.forEach((d, i) => {
     
     card.innerHTML = `${venueLeftContent}${mapsContent}`;
   } else {
-    // Single venue layout (original)
     let venueRightContent = '';
     const venueName = d.venueName || (d.venues && d.venues[0] ? d.venues[0].venueName : 'Venue');
     const venueAddress = d.venueAddress || (d.venues && d.venues[0] ? d.venues[0].venueAddress : '');
@@ -918,7 +982,7 @@ CONFIG.days.forEach((d, i) => {
         </div>
       `;
     } else {
-      venueRightContent = `<div class="photo-slot map-slot">Venue location / Map</div>`;
+      venueRightContent = `<div class="photo-slot">Venue location / Map</div>`;
     }
     
     card.innerHTML = `
@@ -955,11 +1019,32 @@ function updateCountdown(){
 updateCountdown();
 setInterval(updateCountdown, 1000);
 
-// Nav scroll + mobile toggle
+// IMPROVEMENT #12: Dark Mode Toggle
+const darkModeToggle = document.getElementById('darkModeToggle');
+const htmlElement = document.documentElement;
+
+// Check for saved dark mode preference or system preference
+const isDarkMode = localStorage.getItem('darkMode') === 'true' || 
+                   (window.matchMedia('(prefers-color-scheme: dark)').matches && localStorage.getItem('darkMode') !== 'false');
+
+if (isDarkMode) {
+  htmlElement.classList.add('dark-mode');
+  darkModeToggle.textContent = '☀️';
+}
+
+darkModeToggle.addEventListener('click', () => {
+  htmlElement.classList.toggle('dark-mode');
+  const isDark = htmlElement.classList.contains('dark-mode');
+  localStorage.setItem('darkMode', isDark);
+  darkModeToggle.textContent = isDark ? '☀️' : '🌙';
+});
+
+// Nav scroll
 const nav = document.getElementById('nav');
 window.addEventListener('scroll', () => {
   nav.classList.toggle('scrolled', window.scrollY > 20);
 });
+
 const navToggle = document.getElementById('navToggle');
 const navLinks = document.getElementById('navLinks');
 navToggle.addEventListener('click', () => {
@@ -967,6 +1052,19 @@ navToggle.addEventListener('click', () => {
   navToggle.setAttribute('aria-expanded', isOpen);
 });
 navLinks.querySelectorAll('a').forEach(a => a.addEventListener('click', () => navLinks.classList.remove('open')));
+
+// IMPROVEMENT #10: Social Share Buttons
+document.getElementById('shareInstagram').addEventListener('click', function() {
+  const hashtag = CONFIG.hashtag.replace('#', '');
+  const instagramUrl = `https://www.instagram.com/explore/tags/${hashtag}/`;
+  window.open(instagramUrl, '_blank');
+});
+
+document.getElementById('shareWhatsApp').addEventListener('click', function() {
+  const message = `Join us for our wedding celebrations! 💕\n\n${CONFIG.hashtag}\n\n${window.location.href}`;
+  const whatsappUrl = `https://wa.me/?text=${encodeURIComponent(message)}`;
+  window.open(whatsappUrl, '_blank');
+});
 
 // Fade-in on scroll
 const observer = new IntersectionObserver((entries) => {
