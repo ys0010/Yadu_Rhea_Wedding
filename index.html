@@ -12,9 +12,9 @@
   :root{
     /* ---- Palette - Light Mode ---- */
     --ivory: #FAF6EC;
-    --ivory-deep: #F1EAD9;
+    --ivory-deep: #ece1c9;
     --sage: #2f5004;
-    --sage-deep: #0f0f0e;
+    --sage-deep: #15002d;
     --sage-deep-1: #242424;
     --gold: #b38022cb;
     --gold-soft: #E4CE9E;
@@ -23,7 +23,7 @@
     --royalblue: #110265;
     --church-blue: #4F6B72;
     --ink: #0e0d0d;
-    --darkink:#e8e8e8;
+    --darkink:#030000;
 
     /* ---- Type ---- */
     --font-display: 'Cormorant Garamond', serif;
@@ -34,13 +34,13 @@
   html.dark-mode {
     --ivory: #1a1a1a;
     --ivory-deep: #242424;
-    --sage: #cfff94;
-    --sage-deep: #ffffff;
+    --sage: #d4ff66;
+    --sage-deep: #ffe992;
     --sage-deep-1: #e6f0db;
     --gold: #d4b896;
-    --gold-soft: #6b5d4f;
-    --ink: #e8e8e8;
-    
+    --gold-soft: #8b7355;
+    --ink: #fffafa;
+    --darkink: #fbf8f8;
   }
 
   *{ box-sizing: border-box; margin:0; padding:0; }
@@ -49,7 +49,7 @@
     background: var(--ivory);
     background-image: url('bg-01.jpg');
     background-size: cover;
-    background-position: center;
+    background-position: right center;
     background-attachment: fixed;
     background-repeat: no-repeat;
     color: var(--ink);
@@ -59,6 +59,46 @@
     overflow-x: hidden;
     transition: background 0.3s ease, color 0.3s ease;
   }
+  
+  @media (max-width: 1024px){
+      body{
+        background-position: center 75%;
+      }
+  }  
+  
+  @media (max-width: 910px) and (max-height: 1400px){
+      body{
+        background-position: 74% 100% ;
+      }
+  }
+
+  @media (max-width: 821px) and (max-height: 1181px){
+      body{
+        background-position: 74% 100% ;
+      }
+  }
+
+  @media (max-width: 768px) and (max-height: 1030px){
+      body{
+        background-position: 70% 100%;
+      }
+  }
+  @media (max-width: 431px) and (max-height: 933px){
+      body{
+        background-position: 72% 100%;
+      }
+  }
+  @media (max-width: 420px) and (max-height: 850px){
+      body{
+          background-position: 74% 100%;
+      }
+  }
+  @media (max-width: 391px) and (max-height: 850px){
+      body{
+          background-position: 69% 100%;
+      }
+  }
+  
   @media (prefers-reduced-motion: reduce){
     html{ scroll-behavior: auto; }
     *{ animation-duration: 0.001ms !important; transition-duration: 0.001ms !important; }
@@ -106,14 +146,14 @@
     line-height: 1.15;
   }
 
-  section{ padding: clamp(40px, 10vw, 80px) 0; position: relative; }
+  section{ padding: clamp(48px, 10vw, 80px) 0; position: relative; }
   
   @media (max-width: 480px){
     body{ font-size: 15px; }
     .wrap{ padding: 0 16px; }
-    section{ padding: 48px 0; }
+    section{ padding: 40px 0; }
   }
-  @media (max-width: 768px){ section{ padding: 64px 0; } }
+  @media (max-width: 768px){ section{ padding: 56px 0; } }
   @media (min-width: 1200px){
     .wrap{ max-width: 1200px; }
   }
@@ -121,13 +161,14 @@
   /* ---------- Nav ---------- */
   .nav{
     position: fixed; top:0; left:0; right:0; z-index: 50;
-    background: rgba(250,246,236,0.9);
+    background: rgba(250,246,236,0.95);
     backdrop-filter: blur(12px);
     border-bottom: 1px solid var(--gold-soft);
     transition: box-shadow .3s ease, background 0.3s ease;
   }
   html.dark-mode .nav{
-    background: rgba(26,26,26,0.9);
+    background: rgba(26,26,26,0.95);
+    border-bottom-color: var(--gold-soft);
   }
   .nav.scrolled{ box-shadow: 0 4px 20px rgba(71,82,60,0.08); }
   .nav-inner{
@@ -206,28 +247,29 @@
   }
 
   /* ---------- Divider motif ---------- */
-  .kolam-divider{ display:flex; justify-content:center; margin: clamp(6px, 2vw, 8px) 0 0; opacity: 0.85; }
+  .kolam-divider{ display:flex; justify-content:center; margin: clamp(8px, 2vw, 12px) 0 0; opacity: 0.85; }
   .kolam-divider svg{ width: clamp(140px, 60vw, 220px); height: auto; }
 
   /* ---------- Hero ---------- */
   .hero{
-    min-height: 200vh;
+    min-height: 100vh;
     display:flex; flex-direction:column; align-items:center; justify-content:center;
-    text-align:center; position:relative; padding: clamp(80px, 12vw, 140px) 24px clamp(40px, 8vw, 80px);
+    text-align:center; position:relative; padding: clamp(100px, 15vw, 140px) 24px clamp(60px, 10vw, 100px);
     background-size: cover;
     background-position: center;
     background-attachment: fixed;
     overflow:hidden;
   }
+
   .hero::before{
     content:""; position:absolute; inset:0;
-    background: rgba(250,246,236,0.2);
+    background: rgba(250,246,236,0.25);
     backdrop-filter: blur(1px);
     backdrop-filter: saturate(100%);
     pointer-events:none;
   }
   html.dark-mode .hero::before{
-    background: rgba(26,26,26,0.5);
+    background: rgba(26,26,26,0.6);
   }
   .hero::after{
     content:""; position:absolute; inset:0;
@@ -267,17 +309,17 @@
   }
   .hero .date-line{
     position:relative; z-index:1;
-    margin-top: clamp(20px, 4vw, 30px); font-family: var(--font-display); font-size: clamp(18px, 5vw, 22px);
+    margin-top: clamp(20px, 4vw, 28px); font-family: var(--font-display); font-size: clamp(18px, 5vw, 22px);
     color: var(--ink); letter-spacing: 0.03em;
   }
 
   /* Countdown */
   .countdown{
     position:relative; z-index:1;
-    display:flex; gap: clamp(10px, 2.5vw, 16px); margin-top: clamp(16px, 3vw, 28px); flex-wrap: wrap; justify-content:center;
+    display:flex; gap: clamp(10px, 2.5vw, 16px); margin-top: clamp(20px, 4vw, 32px); flex-wrap: wrap; justify-content:center;
   }
   .countdown .unit{
-    background: rgba(255,255,255,0.50);
+    background: rgba(255,255,255,0.60);
     border: 1px solid var(--gold-soft);
     border-radius: 4px;
     min-width: clamp(70px, 15vw, 82px); padding: clamp(12px, 2vw, 16px) clamp(8px, 2vw, 10px);
@@ -285,7 +327,8 @@
     touch-action: manipulation;
   }
   html.dark-mode .countdown .unit{
-    background: rgba(0,0,0,0.3);
+    background: rgba(0,0,0,0.4);
+    border-color: var(--gold-soft);
   }
   .countdown .num{
     font-family: var(--font-display); font-size: clamp(1.5rem, 5vw, 2.1rem); color: var(--sage-deep); font-weight:600;
@@ -297,13 +340,13 @@
   }
   
   @media (max-width: 480px){
-    .hero{ padding: 60px 16px 40px; }
+    .hero{ padding: 80px 16px 50px; }
     .countdown .unit{ min-width: 65px; padding: 10px 6px; }
   }
 
   .scroll-cue{
     position:absolute; bottom: clamp(16px, 3vw, 28px); left:50%; transform:translateX(-50%);
-    font-size: clamp(9px, 2vw, 11px); letter-spacing: 0.2em; text-transform: uppercase; color: var(--sage);
+    font-size: clamp(9px, 2vw, 11px); letter-spacing: 0.2em; text-transform: uppercase; color: var(--sage-deep);
     animation: bob 2.4s ease-in-out infinite;
     z-index: 10;
   }
@@ -314,12 +357,12 @@
   }
 
   /* ---------- Section heading pattern ---------- */
-  .section-head{ text-align:center; max-width: 640px; margin: 0 auto clamp(28px, 6vw, 44px); }
+  .section-head{ text-align:center; max-width: 640px; margin: 0 auto clamp(24px, 5vw, 40px); }
   .section-head h2{ font-size: clamp(1.6rem, 5vw, 2.8rem); margin-top: clamp(8px, 2vw, 10px); }
   .section-head p{ margin-top: clamp(10px, 2vw, 14px); color: var(--sage-deep); font-size: clamp(14px, 3vw, 16px); }
 
   /* ---------- Our Story ---------- */
-  .story-rows{ display:flex; flex-direction: column; gap: clamp(32px, 8vw, 48px); }
+  .story-rows{ display:flex; flex-direction: column; gap: clamp(40px, 8vw, 56px); }
   .story-row{
     display:grid; grid-template-columns: 1fr 1fr; gap: clamp(24px, 6vw, 36px); align-items:center;
   }
@@ -327,14 +370,15 @@
   .story-photo .photo-slot{
     aspect-ratio: 4/5; border-radius: 6px;
   }
-  .story-text .eyebrow{ margin-bottom: clamp(8px, 2vw, 10px); }
-  .story-text h3{ font-size: clamp(1.3rem, 4vw, 1.7rem); margin-bottom: clamp(10px, 2vw, 12px); }
-  .story-text p{ color: var(--darkink); font-size: clamp(14px, 3vw, 16px); }
+  .story-text .eyebrow{ margin-bottom: clamp(10px, 2vw, 12px); }
+  .story-text h3{ font-size: clamp(1.3rem, 4vw, 1.7rem); margin-bottom: clamp(12px, 2vw, 14px); }
+  .story-text p{ color: var(--darkink); font-size: clamp(14px, 3vw, 16px); line-height: 1.8; }
   
   @media (max-width: 768px){
     .story-row, .story-row:nth-child(even) .story-photo{ grid-template-columns: 1fr; order:0; }
     .story-row{ display:flex; flex-direction:column; }
     .story-row{ gap: clamp(24px, 6vw, 32px); }
+    .story-rows{ gap: 32px; }
   }
   @media (max-width: 480px){
     .story-rows{ gap: 32px; }
@@ -361,6 +405,7 @@
   }
   html.dark-mode .day-card{
     background: var(--ivory-deep);
+    border-color: rgba(212, 184, 150, 0.3);
   }
   .day-card::before{
     content: '';
@@ -387,36 +432,36 @@
   .day-card[data-accent="madhuram"] .day-side{ background: linear-gradient(160deg, var(--madhuram), #026302); }
   .day-card[data-accent="church"] .day-side{ background: linear-gradient(160deg, var(--church-blue), #395158); }
   .day-card[data-accent="royalblue"] .day-side{ background: linear-gradient(160deg, var(--royalblue), #191541); }
-  .day-side .day-num{ font-size: clamp(10px, 2vw, 12px); letter-spacing:0.2em; text-transform:uppercase; opacity:0.85; font-weight:700; }
+  .day-side .day-num{ font-size: clamp(10px, 2vw, 12px); letter-spacing:0.2em; text-transform:uppercase; opacity:0.9; font-weight:700; }
   .day-side .day-date{ font-family: var(--font-display); font-size: clamp(1.2rem, 4vw, 1.5rem); margin-top: 4px; }
   .day-side .day-name{ font-family: var(--font-display); font-size: clamp(1rem, 3vw, 1.15rem); opacity:0.95; margin-top: 6px; }
 
   .day-main{ padding: clamp(20px, 4vw, 32px) clamp(16px, 4vw, 28px); position: relative; z-index: 1; }
-  .day-main h3{ font-size: clamp(1.3rem, 4vw, 1.6rem); }
-  .day-main .day-desc{ margin-top: 8px; color: var(--ink); font-size: clamp(14px, 3vw, 16px); }
+  .day-main h3{ font-size: clamp(1.3rem, 4vw, 1.6rem); color: var(--sage-deep); }
+  .day-main .day-desc{ margin-top: 10px; color: var(--darkink); font-size: clamp(14px, 3vw, 16px); line-height: 1.7; }
   .day-meta{ display:flex; flex-wrap:wrap; gap: clamp(16px, 4vw, 22px); margin-top: clamp(14px, 3vw, 20px); }
   .day-meta .item{ min-width: 140px; }
   .day-meta .item .k{
     font-size: clamp(9px, 2vw, 11px); letter-spacing:0.14em; text-transform:uppercase; color: var(--sage); font-weight:700;
   }
-  .day-meta .item .v{ font-size: clamp(13px, 3vw, 15px); margin-top: 4px; }
+  .day-meta .item .v{ font-size: clamp(13px, 3vw, 15px); margin-top: 4px; color: var(--ink); }
   
   .dress-chip{
-    display:inline-block; margin-top: clamp(8px, 2vw, 14px); padding: clamp(4px, 1vw, 6px) clamp(12px, 3vw, 16px);
+    display:inline-block; margin-top: clamp(10px, 2vw, 14px); padding: clamp(6px, 1vw, 8px) clamp(14px, 3vw, 18px);
     border: 1px solid var(--gold); border-radius: 100px; font-size: clamp(11px, 2vw, 12.5px);
     letter-spacing: 0.05em; color: var(--sage-deep); font-weight: 700;
   }
 
   /* Action Buttons */
   .event-actions{
-    display: flex; gap: clamp(6px, 1.5vw, 10px); margin-top: clamp(10px, 2vw, 14px); flex-wrap: wrap;
+    display: flex; gap: clamp(8px, 2vw, 12px); margin-top: clamp(14px, 3vw, 18px); flex-wrap: wrap;
   }
   .btn-small{
     display: inline-flex;
     align-items: center;
     justify-content: center;
     gap: 6px;
-    padding: clamp(6px, 1vw, 8px) clamp(10px, 2vw, 14px);
+    padding: clamp(7px, 1.2vw, 9px) clamp(12px, 2.5vw, 16px);
     border: 1px solid var(--gold); 
     border-radius: 4px; 
     font-size: clamp(10px, 2vw, 11px);
@@ -440,7 +485,7 @@
 
   /* Hashtag Display */
   .hashtag-display{
-    margin-top: clamp(10px, 2vw, 16px); padding: clamp(6px, 1.5vw, 10px) clamp(10px, 2.5vw, 14px);
+    margin-top: clamp(12px, 2vw, 18px); padding: clamp(8px, 1.5vw, 12px) clamp(12px, 2.5vw, 16px);
     background: rgba(198, 161, 91, 0.15); border-radius: 4px;
     font-size: clamp(10px, 1.8vw, 11px); color: var(--sage-deep);
     text-align: center; cursor: pointer;
@@ -450,12 +495,12 @@
     background: rgba(198, 161, 91, 0.25);
   }
   html.dark-mode .hashtag-display{
-    background: rgba(212, 184, 150, 0.15);
+    background: rgba(212, 184, 150, 0.2);
   }
 
   /* ---------- Dress Code Reference Images ---------- */
   .dress-code-ref{
-    margin-top: clamp(10px, 2vw, 16px); display: flex; gap: clamp(10px, 2.5vw, 14px); flex-wrap: wrap;
+    margin-top: clamp(12px, 2vw, 18px); display: flex; gap: clamp(10px, 2.5vw, 14px); flex-wrap: wrap;
   }
   .dress-ref-img{
     width: clamp(80px, 18vw, 100px); height: clamp(110px, 25vw, 140px); border-radius: 8px; overflow: hidden;
@@ -477,17 +522,18 @@
   }
 
   /* ---------- Venue & Travel ---------- */
-  .venue-grid{ display:flex; flex-direction:column; gap: clamp(16px, 4vw, 24px); }
+  .venue-grid{ display:flex; flex-direction:column; gap: clamp(20px, 5vw, 28px); }
   .venue-card{
-    border: 1px solid var(--ivory-deep); border-radius: 10px; padding: clamp(20px, 5vw, 28px);
+    border: 1px solid var(--gold-soft); border-radius: 10px; padding: clamp(24px, 5vw, 32px);
     background: var(--ivory);
-    display:grid; grid-template-columns: 1fr 1fr; gap: clamp(20px, 5vw, 28px);
+    display:grid; grid-template-columns: 1fr 1fr; gap: clamp(24px, 5vw, 32px);
   }
   html.dark-mode .venue-card{
     background: var(--ivory-deep);
+    border-color: rgba(212, 184, 150, 0.3);
   }
   .venue-card h4{ font-family: var(--font-display); font-size: clamp(1.1rem, 4vw, 1.3rem); color: var(--sage-deep); }
-  .venue-card .addr{ margin-top: 6px; font-size: clamp(13px, 3vw, 15px); }
+  .venue-card .addr{ margin-top: 8px; font-size: clamp(13px, 3vw, 15px); color: var(--darkink); }
   .venue-card .map-wrapper{
     width: 100%;
     height: 100%;
@@ -504,14 +550,14 @@
     width: 100%;
     display: grid;
     grid-template-columns: 1fr 1fr;
-    gap: clamp(12px, 3vw, 20px);
+    gap: clamp(14px, 3vw, 22px);
   }
   .venue-card .multi-maps .map-wrapper{
     min-height: 250px;
   }
-  .venue-notes{ margin-top: clamp(10px, 2vw, 14px); }
-  .venue-notes .k{ font-size: clamp(9px, 2vw, 11px); letter-spacing:0.12em; text-transform:uppercase; color: var(--sage); font-weight:700; margin-top: clamp(10px, 2vw, 14px); }
-  .venue-notes p{ font-size: clamp(13px, 2.5vw, 14.5px); margin-top: 4px; }
+  .venue-notes{ margin-top: clamp(14px, 3vw, 18px); }
+  .venue-notes .k{ font-size: clamp(9px, 2vw, 11px); letter-spacing:0.12em; text-transform:uppercase; color: var(--sage); font-weight:700; margin-top: clamp(12px, 2vw, 16px); }
+  .venue-notes p{ font-size: clamp(13px, 2.5vw, 14.5px); margin-top: 6px; color: var(--darkink); }
   
   @media (max-width: 768px){
     .venue-card{ grid-template-columns: 1fr; gap: clamp(16px, 4vw, 20px); }
@@ -531,17 +577,21 @@
   /* ---------- Footer ---------- */
   footer{
     text-align: center; 
-    padding: clamp(28px, 6vw, 40px) clamp(16px, 4vw, 24px); 
+    padding: clamp(36px, 8vw, 48px) clamp(16px, 4vw, 24px); 
     color: var(--sage-deep);
     display: flex;
     flex-direction: column;
     align-items: center;
     justify-content: center;
+    background: var(--ivory);
+  }
+  html.dark-mode footer{
+    background: var(--ivory-deep);
   }
 
   footer .monogram{ 
     font-size: clamp(20px, 5vw, 26px); 
-    margin-bottom: clamp(12px, 2vw, 16px);
+    margin-bottom: clamp(14px, 3vw, 20px);
     width: clamp(250px, 50vw, 450px);
     height: auto;
     display: flex;
@@ -556,36 +606,33 @@
     mix-blend-mode: multiply;
   }
   html.dark-mode footer .monogram img{
-    height: auto;
-    display: block;
-    mix-blend-mode: multiply;
+    mix-blend-mode: lighten;
+    filter: brightness(1.1);
   }
 
   footer .thanks{ 
-    font-size: clamp(12px, 2.5vw, 14px); 
+    font-size: clamp(13px, 2.5vw, 15px); 
     max-width: 520px;
-    color: #f4f0f6;
-  }
-
-  html.dark-mode footer .thanks{ 
-    font-size: clamp(12px, 2.5vw, 14px); 
-    max-width: 520px;
-    color: #f4f0f6;
+    color: var(--darkink);
+    margin-bottom: clamp(16px, 3vw, 20px);
   }
 
   .social-share{
-    margin-top: clamp(12px, 2vw, 16px); display: flex; gap: clamp(10px, 2vw, 14px); justify-content: center; flex-wrap: wrap;
+    margin-top: clamp(12px, 2vw, 18px); display: flex; gap: clamp(10px, 2vw, 14px); justify-content: center; flex-wrap: wrap;
   }
   .social-btn{
     display: inline-flex; align-items: center; justify-content: center;
     padding: clamp(8px, 1.5vw, 10px) clamp(12px, 2.5vw, 16px);
-    border: 1px solid var(--gold); border-radius: 50px; font-size: clamp(11px, 1.8vw, 12px);
+    border: 1px solid var(--gold); border-radius: 50px; font-size: clamp(10px, 1.8vw, 12px);
     color: var(--sage-deep); font-weight: 700; cursor: pointer;
     transition: all 0.3s ease;
-    background: rgba(255,255,255,0.25);
+    background: rgba(255,255,255,0.3);
     gap: 6px;
     min-height: 40px;
     min-width: 40px;
+  }
+  html.dark-mode .social-btn{
+    background: rgba(255,255,255,0.1);
   }
   .social-btn:hover{
     background: var(--gold-soft); color: var(--ink); transform: translateY(-2px);
@@ -687,7 +734,6 @@
     <div class="story-rows">
       <div class="story-row fade-in">
         <div class="story-photo">
-          <!-- OPTIMIZATION: Use loading="lazy" for performance, add srcset for different screen sizes -->
           <img src="met.jpg" alt="How we met" loading="lazy" style="width: 100%; height: 100%; object-fit: cover; border-radius: 6px; display: block;">
         </div>
         <div class="story-text">
@@ -698,7 +744,6 @@
       </div>
       <div class="story-row fade-in">
         <div class="story-photo">
-          <!-- OPTIMIZATION: Lazy load for performance -->
           <img src="proposal-1.jpeg" alt="The proposal" loading="lazy" style="width: 100%; height: 100%; object-fit: cover; border-radius: 6px; display: block;">
         </div>
         <div class="story-text">
@@ -712,7 +757,7 @@
 </section>
 
 <!-- ================= EVENTS ================= -->
-<section id="events" ;">
+<section id="events">
   <div class="wrap">
     <div class="section-head fade-in">
       <p class="eyebrow">Three days, two traditions, one union</p>
@@ -765,7 +810,6 @@ const CONFIG = {
   heroTagline: "Two families, two traditions, and one love story — we can't wait to celebrate with you across three unforgettable days.",
   heroEyebrow: "Together with our families",
   
-  // IMPROVEMENT #10: Hashtag for social media
   hashtag: "#DilHaaRheYa",
   
   heroBackgroundUrl: "bg-01.jpg",
@@ -796,6 +840,8 @@ const CONFIG = {
           accent: "turmeric",
           description: "An afternoon of turmeric, laughter, and blessings — where both families come together for the traditional Haldi ceremony.",
           time: "3:00 PM – 5:00 PM",
+          startTime: "3:00 PM",
+          endTime: "5:00 PM",
           dressCode: "Yellow & Mustard tones",
           dressCodeImages: ["haldi-dress-1.png", "haldi-dress-2.jpg"]
         },
@@ -804,6 +850,8 @@ const CONFIG = {
           accent: "madhuram",
           description: "A vibrant Kerala pre-wedding celebration filled with music, laughter, cherished traditions, and warm family blessings.",
           time: "6:30 PM – 9:00 PM",
+          startTime: "6:30 PM",
+          endTime: "9:00 PM",
           dressCode: "Traditional Kerala attire",
           dressCodeImages: ["madhuram-01.jpg", "madhuram-03.jpg"]
         }
@@ -814,10 +862,14 @@ const CONFIG = {
       date: "Sunday, Nov 22, 2026",
       name: "Church Wedding & Reception",
       accent: "church",
-      venueName: "Wedding: St. Antony's Friary Church <br> Reception: St. Thomas Parish Hall",
-      venueAddress: "Wedding: 85 Hosur Road, Koramangala, Bengaluru, Karnataka <br> Reception: Dharmaram College, 39/2 1st Main Rd, Bengaluru, Karnataka",
+      venueName: "Wedding: St. Antony's Friary Church | Reception: St. Thomas Parish Hall",
+      venueAddress: "Wedding: 85 Hosur Road, Koramangala, Bengaluru, Karnataka | Reception: Dharmaram College, 39/2 1st Main Rd, Bengaluru, Karnataka",
       description: "Join us as we exchange vows at St. Antony's Church, followed by an evening reception filled with music, dinner, and celebration.",
-      time: "Wedding 3:00 PM <br> Reception 6:30 PM",
+      time: "Wedding: 3:00 PM | Reception: 6:30 PM",
+      weddingVenueName: "St. Antony's Friary Church",
+      weddingVenueAddress: "85 Hosur Road, Koramangala, Bengaluru, Karnataka",
+      startTime: "3:00 PM",
+      endTime: "5:00 PM",
       multiVenue: true,
       venues: [
         {
@@ -844,6 +896,8 @@ const CONFIG = {
       accent: "royalblue",
       description: "A traditional Hindu wedding ceremony with sacred rituals, blessings from elders, and the joining of two families under one mandap.",
       time: "11:30 AM – 2:30 PM",
+      startTime: "11:30 AM",
+      endTime: "2:30 PM",
       venueName: "The Brook Serene",
       venueAddress: "Kottiyam, Kollam, Kerala",
       backgroundUrl: "",
@@ -876,7 +930,6 @@ if (logoSrc) {
   document.querySelector('.hero-logo img').src = logoSrc;
 }
 
-
 document.getElementById('hero-eyebrow').textContent = CONFIG.heroEyebrow;
 document.getElementById('hero-names').innerHTML = CONFIG.partner1 + ' <span class="amp">&</span> ' + CONFIG.partner2;
 document.getElementById('hero-tagline').textContent = CONFIG.heroTagline;
@@ -892,14 +945,115 @@ document.getElementById('story1-text').textContent = CONFIG.story.met.text;
 document.getElementById('story2-title').textContent = CONFIG.story.proposal.title;
 document.getElementById('story2-text').textContent = CONFIG.story.proposal.text;
 
-// IMPROVEMENT #11: Add to Calendar function
-function addToCalendar(eventName, date, time, venue) {
-  // Parse date and time
-  const dateStr = date + ', ' + time.split('–')[0].trim();
-  const startTime = new Date(dateStr).toISOString();
-  
-  const calendarUrl = `https://calendar.google.com/calendar/render?action=TEMPLATE&text=${encodeURIComponent(eventName)}&dates=${startTime.replace(/[-:]/g, '').split('.')[0]}Z/${startTime.replace(/[-:]/g, '').split('.')[0]}Z&location=${encodeURIComponent(venue)}&details=${encodeURIComponent(CONFIG.hashtag)}`;
-  window.open(calendarUrl, '_blank');
+/* ============================================================
+   Add to Calendar - SAFE VERSION WITH DATA ATTRIBUTES
+   ============================================================ */
+
+// Store calendar events data
+const calendarEvents = {};
+let eventCounter = 0;
+
+function addToCalendar(eventId) {
+  try {
+    const event = calendarEvents[eventId];
+    if (!event) {
+      alert('Event data not found');
+      return;
+    }
+    
+    const { eventName, date, startTime, endTime, venue } = event;
+    
+    // Extract date parts from "Sunday, Nov 22, 2026"
+    const dateRegex = /([A-Za-z]+)\s+(\d{1,2}),\s+(\d{4})/;
+    const dateMatch = date.match(dateRegex);
+    
+    if (!dateMatch) {
+      alert('Error: Invalid date format');
+      console.error('Date parsing failed for:', date);
+      return;
+    }
+    
+    const monthStr = dateMatch[1];
+    const day = parseInt(dateMatch[2], 10);
+    const year = parseInt(dateMatch[3], 10);
+    
+    // Month lookup
+    const months = {
+      'January': 0, 'February': 1, 'March': 2, 'April': 3, 'May': 4, 'June': 5,
+      'July': 6, 'August': 7, 'September': 8, 'October': 9, 'November': 10, 'December': 11,
+      'Jan': 0, 'Feb': 1, 'Mar': 2, 'Apr': 3, 'May': 4, 'Jun': 5,
+      'Jul': 6, 'Aug': 7, 'Sep': 8, 'Oct': 9, 'Nov': 10, 'Dec': 11
+    };
+    
+    const month = months[monthStr];
+    if (month === undefined) {
+      alert('Error: Invalid month');
+      console.error('Month parsing failed for:', monthStr);
+      return;
+    }
+    
+    // Parse time: "3:00 PM"
+    const parseTime = (timeStr) => {
+      const timeRegex = /(\d{1,2}):(\d{2})\s*(AM|PM)/i;
+      const timeMatch = timeStr.trim().match(timeRegex);
+      
+      if (!timeMatch) {
+        console.error('Time parsing failed for:', timeStr);
+        return { hours: 0, minutes: 0 };
+      }
+      
+      let hours = parseInt(timeMatch[1], 10);
+      const minutes = parseInt(timeMatch[2], 10);
+      const period = timeMatch[3].toUpperCase();
+      
+      if (period === 'PM' && hours !== 12) {
+        hours += 12;
+      } else if (period === 'AM' && hours === 12) {
+        hours = 0;
+      }
+      
+      return { hours, minutes };
+    };
+    
+    const startTimeObj = parseTime(startTime);
+    const endTimeObj = parseTime(endTime);
+    
+    // Create date objects
+    const startDate = new Date(year, month, day, startTimeObj.hours, startTimeObj.minutes, 0);
+    const endDate = new Date(year, month, day, endTimeObj.hours, endTimeObj.minutes, 0);
+    
+    if (isNaN(startDate.getTime()) || isNaN(endDate.getTime())) {
+      alert('Error: Invalid date/time combination');
+      console.error('Date/time validation failed');
+      return;
+    }
+    
+    // Format for Google Calendar
+    const formatGoogleDate = (dateObj) => {
+      const year = dateObj.getFullYear();
+      const month = String(dateObj.getMonth() + 1).padStart(2, '0');
+      const day = String(dateObj.getDate()).padStart(2, '0');
+      const hours = String(dateObj.getHours()).padStart(2, '0');
+      const minutes = String(dateObj.getMinutes()).padStart(2, '0');
+      return `${year}${month}${day}T${hours}${minutes}00`;
+    };
+    
+    const formattedStart = formatGoogleDate(startDate);
+    const formattedEnd = formatGoogleDate(endDate);
+    
+    // Clean venue name
+    let venueClean = venue.replace(/<[^>]*>/g, '').split('|')[0].trim();
+    
+    // Build Google Calendar URL
+    const calendarUrl = `https://calendar.google.com/calendar/render?action=TEMPLATE&text=${encodeURIComponent(eventName)}&dates=${formattedStart}/${formattedEnd}&location=${encodeURIComponent(venueClean)}&details=${encodeURIComponent(CONFIG.hashtag)}`;
+    
+    console.log('✓ Added to calendar:', eventName, 'at', venueClean);
+    window.open(calendarUrl, '_blank');
+    
+  } catch (err) {
+    console.error('Calendar error:', err);
+    alert('Error adding to calendar. Please try again.');
+  }
 }
 
 // Render day cards
@@ -913,6 +1067,18 @@ CONFIG.days.forEach((d, i) => {
       if (d.backgroundUrl) {
         card.style.setProperty('--bg-image', `url('${d.backgroundUrl}')`);
       }
+      
+      // Store calendar event data
+      const eventId = `event_${eventCounter}`;
+      calendarEvents[eventId] = {
+        eventName: func.name,
+        date: d.date,
+        startTime: func.startTime,
+        endTime: func.endTime,
+        venue: d.venueName
+      };
+      eventCounter++;
+      
       card.innerHTML = `
         <div class="day-side">
           <span class="day-num">${d.dayLabel}${d.functions.length > 1 ? ` - ${fIdx + 1}` : ''}</span>
@@ -927,9 +1093,8 @@ CONFIG.days.forEach((d, i) => {
             <div class="item"><div class="k">Venue</div><div class="v">${d.venueName}</div></div>
           </div>
           <div class="dress-chip">Dress Code: ${func.dressCode}</div>
-          <!-- IMPROVEMENT #11: Add to Calendar Button -->
           <div class="event-actions">
-            <button class="btn-small" onclick="addToCalendar('${func.name}', '${d.date}', '${func.time}', '${d.venueName}')">
+            <button class="btn-small" onclick="addToCalendar('${eventId}')">
               <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 640 640" aria-hidden="true">
                 <path d="M224 64C206.3 64 192 78.3 192 96L192 128L160 128C124.7 128 96 156.7 96 192L96 240L544 240L544 192C544 156.7 515.3 128 480 128L448 128L448 96C448 78.3 433.7 64 416 64C398.3 64 384 78.3 384 96L384 128L256 128L256 96C256 78.3 241.7 64 224 64zM96 288L96 480C96 515.3 124.7 544 160 544L480 544C515.3 544 544 515.3 544 480L544 288L96 288z"/>
               </svg>
@@ -956,6 +1121,22 @@ CONFIG.days.forEach((d, i) => {
     if (d.backgroundUrl) {
       card.style.setProperty('--bg-image', `url('${d.backgroundUrl}')`);
     }
+    
+    // For Day 2 (Wedding + Reception), use wedding venue and time only for calendar
+    const calendarVenue = d.weddingVenueName || d.venueName;
+    const displayName = d.weddingVenueName ? 'Wedding Ceremony' : d.name;
+    
+    // Store calendar event data
+    const eventId = `event_${eventCounter}`;
+    calendarEvents[eventId] = {
+      eventName: displayName,
+      date: d.date,
+      startTime: d.startTime,
+      endTime: d.endTime,
+      venue: calendarVenue
+    };
+    eventCounter++;
+    
     card.innerHTML = `
       <div class="day-side">
         <span class="day-num">${d.dayLabel}</span>
@@ -970,9 +1151,8 @@ CONFIG.days.forEach((d, i) => {
           <div class="item"><div class="k">Venue</div><div class="v">${d.venueName}</div></div>
         </div>
         <div class="dress-chip">Dress Code: ${d.dressCode}</div>
-        <!-- IMPROVEMENT #11: Add to Calendar Button -->
         <div class="event-actions">
-          <button class="btn-small" onclick="addToCalendar('${d.name}', '${d.date}', '${d.time}', '${d.venueName}')">
+          <button class="btn-small" onclick="addToCalendar('${eventId}')">
             <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 640 640" aria-hidden="true">
               <path d="M224 64C206.3 64 192 78.3 192 96L192 128L160 128C124.7 128 96 156.7 96 192L96 240L544 240L544 192C544 156.7 515.3 128 480 128L448 128L448 96C448 78.3 433.7 64 416 64C398.3 64 384 78.3 384 96L384 128L256 128L256 96C256 78.3 241.7 64 224 64zM96 288L96 480C96 515.3 124.7 544 160 544L480 544C515.3 544 544 515.3 544 480L544 288L96 288z"/>
             </svg>
@@ -994,14 +1174,6 @@ CONFIG.days.forEach((d, i) => {
   }
 });
 
-// IMPROVEMENT #10: Copy hashtag function
-function copyHashtag() {
-  const hashtag = CONFIG.hashtag;
-  navigator.clipboard.writeText(hashtag).then(() => {
-    alert(`Copied: ${hashtag}`);
-  });
-}
-
 // Render venue cards
 const venueContainer = document.getElementById('venue-container');
 CONFIG.days.forEach((d, i) => {
@@ -1014,15 +1186,15 @@ CONFIG.days.forEach((d, i) => {
       <div>
         <p class="eyebrow">${d.dayLabel} · ${d.date}</p>
         <h4>${d.name}</h4>
-        <p style="font-size: clamp(13px, 3vw, 15px); margin-top: 12px; color: var(--sage); font-weight: 700;">Venues:</p>
+        <p style="font-size: clamp(13px, 3vw, 15px); margin-top: 14px; color: var(--sage); font-weight: 700;">Venues:</p>
     `;
     
     d.venues.forEach(v => {
       venueLeftContent += `
-        <div style="margin-top: 16px;">
+        <div style="margin-top: 18px;">
           <p style="font-size: clamp(11px, 2vw, 12px); font-weight: 700; text-transform: uppercase; color: var(--sage-deep);">${v.type}</p>
-          <p style="font-size: clamp(12px, 3vw, 14px); font-weight: 600; margin-top: 4px;">${v.venueName}</p>
-          <p style="font-size: clamp(12px, 3vw, 14px); margin-top: 2px; color: var(--ink);">${v.venueAddress}</p>
+          <p style="font-size: clamp(12px, 3vw, 14px); font-weight: 600; margin-top: 6px;">${v.venueName}</p>
+          <p style="font-size: clamp(12px, 3vw, 14px); margin-top: 4px; color: var(--darkink);">${v.venueAddress}</p>
         </div>
       `;
     });
@@ -1090,11 +1262,10 @@ function updateCountdown(){
 updateCountdown();
 setInterval(updateCountdown, 1000);
 
-// IMPROVEMENT #12: Dark Mode Toggle
+// Dark Mode Toggle
 const darkModeToggle = document.getElementById('darkModeToggle');
 const htmlElement = document.documentElement;
 
-// Check for saved dark mode preference or system preference
 const isDarkMode = localStorage.getItem('darkMode') === 'true' || 
                    (window.matchMedia('(prefers-color-scheme: dark)').matches && localStorage.getItem('darkMode') !== 'false');
 
@@ -1124,7 +1295,7 @@ navToggle.addEventListener('click', () => {
 });
 navLinks.querySelectorAll('a').forEach(a => a.addEventListener('click', () => navLinks.classList.remove('open')));
 
-// IMPROVEMENT #10: Social Share Buttons
+// Social Share Buttons
 document.getElementById('shareInstagram').addEventListener('click', function() {
   const hashtag = CONFIG.hashtag.replace('#', '');
   const instagramUrl = `https://www.instagram.com/explore/tags/${hashtag}/`;
