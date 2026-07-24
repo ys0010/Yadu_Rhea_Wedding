@@ -6,7 +6,7 @@
 <title>DilHaaRheYa - 2026</title>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,500;0,600;1,500&family=Karla:wght@400;600;700&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,600;0,700;1,600&family=Karla:wght@400;500;600;700&display=swap" rel="stylesheet">
 
 <style>
   :root{
@@ -20,14 +20,28 @@
     --gold-soft: #E4CE9E;
     --turmeric: #D99A3D;
     --madhuram: #013001;
-    --royalblue: #110265;
-    --church-blue: #4F6B72;
+    --royalblue: #10483e;
+    --church-blue: #445b61;
     --ink: #0e0d0d;
     --darkink:#030000;
+    --surface-warm: rgba(250, 246, 236, 0.84);
+    --surface-card: rgba(255, 255, 255, 0.88);
+
+    /* ---- Editable heading colors ---- */
+    --heading-hero-color: #15002d;
+    --heading-section-color: #2f5004;
+    --heading-story-color: #3f2b14;
+    --heading-event-color: #233b23;
+    --heading-venue-color: #36535b;
+    --heading-footer-color: #15002d;
+    --heading-eyebrow-color: #2f5004;
 
     /* ---- Type ---- */
     --font-display: 'Cormorant Garamond', serif;
     --font-body: 'Karla', sans-serif;
+    --heading-weight: 700;
+    --body-weight: 500;
+    --page-bg-position: right bottom;
   }
 
   /* DARK MODE */
@@ -41,62 +55,63 @@
     --gold-soft: #8b7355;
     --ink: #fffafa;
     --darkink: #fbf8f8;
+    --surface-warm: rgba(26, 26, 26, 0.82);
+    --surface-card: rgba(36, 36, 36, 0.9);
+    --heading-hero-color: #ffe992;
+    --heading-section-color: #d4ff66;
+    --heading-story-color: #f6ead6;
+    --heading-event-color: #f6ead6;
+    --heading-venue-color: #d4ff66;
+    --heading-footer-color: #ffe992;
+    --heading-eyebrow-color: #d4ff66;
   }
 
   *{ box-sizing: border-box; margin:0; padding:0; }
-  html{ scroll-behavior: smooth; }
+  html{ scroll-behavior: smooth; background: var(--ivory); }
   body{
-    background: var(--ivory);
+    background-color: var(--ivory);
     background-image: url('bg-01.jpg');
     background-size: cover;
-    background-position: right center;
+    background-position: var(--page-bg-position);
     background-attachment: fixed;
     background-repeat: no-repeat;
     color: var(--ink);
     font-family: var(--font-body);
-    font-size: 16px;
-    line-height: 1.7;
+    font-size: 17px;
+    font-weight: var(--body-weight);
+    line-height: 1.75;
+    min-height: 100vh;
     overflow-x: hidden;
+    position: relative;
+    isolation: isolate;
+    text-rendering: optimizeLegibility;
+    -webkit-font-smoothing: antialiased;
     transition: background 0.3s ease, color 0.3s ease;
   }
-  
-  @media (max-width: 1024px){
-      body{
-        background-position: center 75%;
-      }
-  }  
-  
-  @media (max-width: 910px) and (max-height: 1400px){
-      body{
-        background-position: 74% 100% ;
-      }
+
+  body::before{
+    content:"";
+    position: fixed;
+    inset: 0;
+    z-index: -1;
+    background-image: url('bg-01.jpg');
+    background-size: cover;
+    background-position: var(--page-bg-position);
+    background-repeat: no-repeat;
+    pointer-events: none;
+    transform: translateZ(0);
   }
 
-  @media (max-width: 821px) and (max-height: 1181px){
-      body{
-        background-position: 74% 100% ;
-      }
+  @media (max-aspect-ratio: 3/4){
+    :root{
+      --page-bg-position: 78% bottom;
+    }
   }
 
-  @media (max-width: 768px) and (max-height: 1030px){
-      body{
-        background-position: 70% 100%;
-      }
-  }
-  @media (max-width: 431px) and (max-height: 933px){
-      body{
-        background-position: 72% 100%;
-      }
-  }
-  @media (max-width: 420px) and (max-height: 850px){
-      body{
-          background-position: 74% 100%;
-      }
-  }
-  @media (max-width: 391px) and (max-height: 850px){
-      body{
-          background-position: 69% 100%;
-      }
+  @media (max-width: 480px){
+    :root{
+      --page-bg-position: 76% bottom;
+    }
   }
   
   @media (prefers-reduced-motion: reduce){
@@ -120,40 +135,42 @@
 
   .eyebrow{
     font-family: var(--font-body);
-    font-size: clamp(11px, 2.2vw, 12.5px);
-    letter-spacing: 0.22em;
+    font-size: 0.78rem;
+    letter-spacing: 0.16em;
     text-transform: uppercase;
-    color: var(--sage-deep);
+    color: var(--heading-eyebrow-color);
     font-weight: 700;
+    line-height: 1.4;
   }
 
-  h1{
+  h1, h2, h3, h4{
     font-family: var(--font-display);
-    color: var(--sage-deep);
-    font-weight: 600;
-    line-height: 1.15;
+    font-weight: var(--heading-weight);
+    line-height: 1.1;
+    letter-spacing: 0;
   }
-    h2{
-    font-family: var(--font-display);
-    color: var(--sage-deep);
-    font-weight: 600;
-    line-height: 1.15;
-  }
-    h3{
-    font-family: var(--font-display);
-    color: var(--sage-deep-1);
-    font-weight: 600;
-    line-height: 1.15;
+  h1{ color: var(--heading-hero-color); }
+  h2{ color: var(--heading-section-color); }
+  h3{ color: var(--heading-story-color); }
+  h4{ color: var(--heading-venue-color); }
+
+  p, li, .day-meta .item .v, .venue-info, .venue-item-address{
+    overflow-wrap: break-word;
   }
 
-  section{ padding: clamp(48px, 10vw, 80px) 0; position: relative; }
+  section{
+    padding: clamp(48px, 10vw, 80px) 0;
+    position: relative;
+    background: var(--surface-warm);
+    scroll-margin-top: 90px;
+  }
   
   @media (max-width: 480px){
-    body{ font-size: 15px; }
+    body{ font-size: 16px; }
     .wrap{ padding: 0 16px; }
-    section{ padding: 40px 0; }
+    section{ padding: 44px 0; }
   }
-  @media (max-width: 768px){ section{ padding: 56px 0; } }
+  @media (min-width: 481px) and (max-width: 768px){ section{ padding: 56px 0; } }
   @media (min-width: 1200px){
     .wrap{ max-width: 1200px; }
   }
@@ -161,7 +178,7 @@
   /* ---------- Nav ---------- */
   .nav{
     position: fixed; top:0; left:0; right:0; z-index: 50;
-    background: rgba(250,246,236,0.95);
+    background: rgba(250,246,236,0.94);
     backdrop-filter: blur(12px);
     border-bottom: 1px solid var(--gold-soft);
     transition: box-shadow .3s ease, background 0.3s ease;
@@ -172,15 +189,19 @@
   }
   .nav.scrolled{ box-shadow: 0 4px 20px rgba(71,82,60,0.08); }
   .nav-inner{
-    max-width: 1080px; margin: 0 auto; padding: clamp(10px, 2vw, 14px) clamp(12px, 4vw, 24px);
+    max-width: 1080px; margin: 0 auto; padding: 12px clamp(14px, 4vw, 24px);
     display:flex; align-items:center; justify-content: space-between;
+    position: relative;
+    gap: 18px;
   }
   .monogram{
-    font-family: var(--font-display); font-size: clamp(18px, 5vw, 22px); color: var(--sage-deep);
+    font-family: var(--font-display); font-size: 1.25rem; color: var(--heading-hero-color);
     letter-spacing: 0.05em; white-space: nowrap;
+    flex-shrink: 0;
   }
   .monogram img{
-    height: clamp(40px, 30vw, 100px);
+    height: clamp(42px, 7vw, 72px);
+    max-width: min(34vw, 220px);
     width: auto;
     display: block;
     mix-blend-mode: multiply;
@@ -191,8 +212,8 @@
   }
   .nav-links{ display:flex; gap: clamp(20px, 4vw, 28px); align-items: center; }
   .nav-links a{
-    font-size: clamp(11px, 2.5vw, 13px); letter-spacing: 0.12em; text-transform: uppercase;
-    color: var(--sage-deep); font-weight: 700; position:relative; padding: 4px 0;
+    font-size: 0.78rem; letter-spacing: 0.1em; text-transform: uppercase;
+    color: var(--heading-hero-color); font-weight: 700; position:relative; padding: 6px 0;
     white-space: nowrap;
   }
   .nav-links a::after{
@@ -207,43 +228,77 @@
     padding: 6px; margin: 0 12px;
     min-height: 44px; min-width: 44px;
     display: flex; align-items: center; justify-content: center;
-    color: var(--sage-deep);
-    font-size: clamp(18px, 5vw, 22px);
+    color: var(--heading-hero-color);
+    font-size: 1.25rem;
+    border-radius: 50%;
     transition: transform 0.3s ease;
   }
   .dark-mode-toggle:hover{ transform: rotate(20deg); }
 
   .nav-toggle{
-    display: none !important;
+    display: none;
     background:none; border:none; cursor:pointer;
     padding: 6px; margin: -6px;
     min-height: 44px; min-width: 44px;
     align-items: center; justify-content: center;
   }
-  .nav-toggle svg{ width: clamp(22px, 5vw, 26px); height: clamp(22px, 5vw, 26px); color: var(--sage-deep); }
+  .nav-toggle svg{ width: 26px; height: 26px; color: var(--heading-hero-color); }
 
   @media (max-width: 768px){
     .nav-links{
-      position: static;
-      background: transparent;
       flex-direction: row;
-      gap: clamp(16px, 3vw, 20px);
-      max-height: none;
-      overflow: visible;
-      border-bottom: none;
+      gap: 18px;
     }
     .nav-links a{
-      padding: 4px 0;
-      border-top: none;
-      font-size: clamp(10px, 2vw, 12px);
+      font-size: 0.72rem;
     }
-    .nav-toggle{ display: none !important; }
+  }
+  @media (max-width: 640px){
+    .nav-inner{ padding: 10px 14px; }
+    .monogram img{ height: 42px; max-width: 52vw; }
+    .nav-toggle{ display: flex; }
+    .nav-links{
+      position: absolute;
+      top: 100%;
+      left: 14px;
+      right: 14px;
+      flex-direction: column;
+      align-items: stretch;
+      gap: 0;
+      max-height: 0;
+      overflow: hidden;
+      padding: 0 10px;
+      visibility: hidden;
+      pointer-events: none;
+      background: rgba(250,246,236,0.97);
+      border: 1px solid var(--gold-soft);
+      border-top: 0;
+      border-radius: 0 0 8px 8px;
+      box-shadow: 0 16px 30px rgba(21,0,45,0.12);
+      transition: max-height 0.25s ease, padding 0.25s ease, visibility 0.25s ease;
+    }
+    html.dark-mode .nav-links{
+      background: rgba(26,26,26,0.98);
+    }
+    .nav-links.open{
+      max-height: 240px;
+      padding: 8px 10px 10px;
+      visibility: visible;
+      pointer-events: auto;
+    }
+    .nav-links a{
+      padding: 12px 4px;
+      border-bottom: 1px solid rgba(179,128,34,0.24);
+      font-size: 0.78rem;
+    }
+    .dark-mode-toggle{
+      margin: 8px 0 0;
+      justify-content: flex-start;
+    }
   }
   @media (max-width: 480px){
     .nav-inner{ padding: 10px 12px; }
-    .monogram{ font-size: 16px; }
-    .monogram img{ height: 24px; }
-    .dark-mode-toggle{ margin: 0 8px; }
+    .monogram{ font-size: 1rem; }
   }
 
   /* ---------- Divider motif ---------- */
@@ -253,19 +308,17 @@
   /* ---------- Hero ---------- */
   .hero{
     min-height: 100vh;
+    min-height: 100svh;
     display:flex; flex-direction:column; align-items:center; justify-content:center;
-    text-align:center; position:relative; padding: clamp(100px, 15vw, 140px) 24px clamp(60px, 10vw, 100px);
-    background-size: cover;
-    background-position: center;
-    background-attachment: fixed;
+    text-align:center; position:relative; padding: 128px 24px 92px;
+    background: transparent;
     overflow:hidden;
   }
 
   .hero::before{
     content:""; position:absolute; inset:0;
-    background: rgba(250,246,236,0.25);
-    backdrop-filter: blur(1px);
-    backdrop-filter: saturate(100%);
+    background: rgba(250,246,236,0.56);
+    backdrop-filter: blur(2px) saturate(105%);
     pointer-events:none;
   }
   html.dark-mode .hero::before{
@@ -273,17 +326,17 @@
   }
   .hero::after{
     content:""; position:absolute; inset:0;
-    background-image:
-      radial-gradient(circle at 8% 12%, rgba(124,138,110,0.08) 0, transparent 22%),
-      radial-gradient(circle at 92% 85%, rgba(198,161,91,0.12) 0, transparent 24%);
+    background:
+      linear-gradient(180deg, rgba(250,246,236,0.18), transparent 32%, rgba(250,246,236,0.22)),
+      linear-gradient(90deg, rgba(250,246,236,0.18), rgba(250,246,236,0.05));
     pointer-events:none;
   }
 
   .hero-logo{
     position:relative; z-index:1;
-    width: clamp(250px, 50vw, 450px);
+    width: min(76vw, 430px);
     height: auto;
-    margin-bottom: clamp(20px, 4vw, 32px);
+    margin-bottom: 28px;
     display: flex;
     align-items: center;
     justify-content: center;
@@ -298,19 +351,23 @@
   .hero .eyebrow{ position:relative; z-index:1; margin-bottom: clamp(12px, 2vw, 18px); }
   .hero h1{
     position:relative; z-index:1;
-    font-size: clamp(2rem, 8vw, 5.2rem);
-    letter-spacing: 0.01em;
+    font-size: 4.9rem;
+    text-wrap: balance;
   }
   .hero h1 .amp{ color: var(--gold); font-style: italic; padding: 0 clamp(3px, 1vw, 6px); }
   .hero .tagline{
     position:relative; z-index:1;
-    max-width: 520px; margin: clamp(16px, 3vw, 22px) auto 0; color: var(--sage-deep);
-    font-size: clamp(15px, 4vw, 17px);
+    max-width: 640px; margin: 22px auto 0; color: var(--heading-hero-color);
+    font-size: 1.08rem;
+    font-weight: 500;
+    line-height: 1.75;
+    text-wrap: balance;
   }
   .hero .date-line{
     position:relative; z-index:1;
-    margin-top: clamp(20px, 4vw, 28px); font-family: var(--font-display); font-size: clamp(18px, 5vw, 22px);
-    color: var(--ink); letter-spacing: 0.03em;
+    margin-top: 28px; font-family: var(--font-display); font-size: 1.42rem;
+    color: var(--ink); letter-spacing: 0.02em; font-weight: 600;
+    text-wrap: balance;
   }
 
   /* Countdown */
@@ -322,7 +379,7 @@
     background: rgba(255,255,255,0.60);
     border: 1px solid var(--gold-soft);
     border-radius: 4px;
-    min-width: clamp(70px, 15vw, 82px); padding: clamp(12px, 2vw, 16px) clamp(8px, 2vw, 10px);
+    min-width: 84px; padding: 14px 10px;
     text-align:center;
     touch-action: manipulation;
   }
@@ -331,17 +388,24 @@
     border-color: var(--gold-soft);
   }
   .countdown .num{
-    font-family: var(--font-display); font-size: clamp(1.5rem, 5vw, 2.1rem); color: var(--sage-deep); font-weight:600;
+    font-family: var(--font-display); font-size: 2.1rem; color: var(--heading-hero-color); font-weight:700;
     display:block;
+    line-height: 1;
   }
   .countdown .label{
-    font-size: clamp(9px, 2vw, 10.5px); letter-spacing: 0.16em; text-transform: uppercase; color: var(--sage);
+    font-size: 0.68rem; letter-spacing: 0.14em; text-transform: uppercase; color: var(--sage);
     font-weight: 700;
   }
   
   @media (max-width: 480px){
-    .hero{ padding: 80px 16px 50px; }
-    .countdown .unit{ min-width: 65px; padding: 10px 6px; }
+    .hero{ padding: 96px 16px 58px; }
+    .hero-logo{ width: min(82vw, 320px); margin-bottom: 22px; }
+    .hero h1{ font-size: 2.65rem; }
+    .hero .tagline{ font-size: 1rem; line-height: 1.68; }
+    .hero .date-line{ font-size: 1.18rem; }
+    .countdown{ gap: 10px; }
+    .countdown .unit{ min-width: 68px; padding: 11px 7px; }
+    .countdown .num{ font-size: 1.65rem; }
   }
 
   .scroll-cue{
@@ -358,8 +422,16 @@
 
   /* ---------- Section heading pattern ---------- */
   .section-head{ text-align:center; max-width: 640px; margin: 0 auto clamp(24px, 5vw, 40px); }
-  .section-head h2{ font-size: clamp(1.6rem, 5vw, 2.8rem); margin-top: clamp(8px, 2vw, 10px); }
-  .section-head p{ margin-top: clamp(10px, 2vw, 14px); color: var(--sage-deep); font-size: clamp(14px, 3vw, 16px); }
+  .section-head h2{ font-size: 3rem; margin-top: 10px; text-wrap: balance; }
+  .section-head p{ margin-top: 14px; color: var(--darkink); font-size: 1rem; line-height: 1.75; font-weight: 500; }
+
+  @media (min-width: 481px) and (max-width: 768px){
+    .hero h1{ font-size: 3.4rem; }
+    .section-head h2{ font-size: 2.35rem; }
+  }
+  @media (max-width: 480px){
+    .section-head h2{ font-size: 2.1rem; }
+  }
 
   /* ---------- Our Story ---------- */
   .story-rows{ display:flex; flex-direction: column; gap: clamp(40px, 8vw, 56px); }
@@ -367,18 +439,26 @@
     display:grid; grid-template-columns: 1fr 1fr; gap: clamp(24px, 6vw, 36px); align-items:center;
   }
   .story-row:nth-child(even) .story-photo{ order:2; }
+  .story-photo img{
+    width: 100%;
+    aspect-ratio: 4 / 5;
+    object-fit: cover;
+    border-radius: 8px;
+    box-shadow: 0 18px 34px rgba(21, 0, 45, 0.12);
+  }
   .story-photo .photo-slot{
-    aspect-ratio: 4/5; border-radius: 6px;
+    aspect-ratio: 4/5; border-radius: 8px;
   }
   .story-text .eyebrow{ margin-bottom: clamp(10px, 2vw, 12px); }
-  .story-text h3{ font-size: clamp(1.3rem, 4vw, 1.7rem); margin-bottom: clamp(12px, 2vw, 14px); }
-  .story-text p{ color: var(--darkink); font-size: clamp(14px, 3vw, 16px); line-height: 1.8; }
+  .story-text h3{ font-size: 1.9rem; margin-bottom: 14px; color: var(--heading-story-color); }
+  .story-text p{ color: var(--darkink); font-size: 1rem; line-height: 1.82; font-weight: 500; }
   
   @media (max-width: 768px){
     .story-row, .story-row:nth-child(even) .story-photo{ grid-template-columns: 1fr; order:0; }
     .story-row{ display:flex; flex-direction:column; }
     .story-row{ gap: clamp(24px, 6vw, 32px); }
     .story-rows{ gap: 32px; }
+    .story-text h3{ font-size: 1.65rem; }
   }
   @media (max-width: 480px){
     .story-rows{ gap: 32px; }
@@ -397,59 +477,74 @@
   /* ---------- Event Day Cards ---------- */
   .days{ display:flex; flex-direction:column; gap: clamp(20px, 5vw, 32px); }
   .day-card{
-    border-radius: 10px; overflow:hidden;
+    border-radius: 8px; overflow:hidden;
     border: 1px solid var(--gold-soft);
-    background: #fff;
-    display:grid; grid-template-columns: clamp(160px, 25vw, 200px) 1fr;
+    background: var(--surface-card);
+    display:flex; flex-direction:column;
     position: relative;
+    box-shadow: 0 18px 40px rgba(21, 0, 45, 0.1);
   }
   html.dark-mode .day-card{
-    background: var(--ivory-deep);
+    background: var(--surface-card);
     border-color: rgba(212, 184, 150, 0.3);
+    box-shadow: 0 18px 40px rgba(0, 0, 0, 0.24);
   }
-  .day-card::before{
-    content: '';
-    position: absolute;
-    top: 0;
-    left: 0;
-    right: 0;
-    bottom: 0;
-    background-size: cover;
-    background-position: center;
-    filter: blur(2px);
-    opacity: 0.15;
-    pointer-events: none;
-    z-index: 0;
+  .day-header{
+    display:grid; grid-template-columns: minmax(170px, 220px) minmax(0, 1fr);
+    gap: 32px;
+    padding: clamp(24px, 5vw, 32px);
+    position: relative;
+    z-index: 1;
   }
-  .day-card .day-side{
-    padding: clamp(24px, 5vw, 32px) clamp(16px, 4vw, 24px); display:flex; flex-direction:column; justify-content:center; gap: 6px;
+
+  .day-side{
+    padding: 28px 22px; display:flex; flex-direction:column; justify-content:center; gap: 8px;
     color: #fff;
     backdrop-filter: blur(1px);
     position: relative;
     z-index: 1;
+    border-radius: 6px;
   }
-  .day-card[data-accent="turmeric"] .day-side{ background: linear-gradient(160deg, var(--turmeric), #C07F26); }
+  .day-card[data-accent="turmeric"] .day-side{ background: linear-gradient(160deg, var(--turmeric), #5c3c0f); }
   .day-card[data-accent="madhuram"] .day-side{ background: linear-gradient(160deg, var(--madhuram), #026302); }
-  .day-card[data-accent="church"] .day-side{ background: linear-gradient(160deg, var(--church-blue), #395158); }
+  .day-card[data-accent="church"] .day-side{ background: linear-gradient(160deg, var(--church-blue), #1e2b2e); }
   .day-card[data-accent="royalblue"] .day-side{ background: linear-gradient(160deg, var(--royalblue), #191541); }
-  .day-side .day-num{ font-size: clamp(10px, 2vw, 12px); letter-spacing:0.2em; text-transform:uppercase; opacity:0.9; font-weight:700; }
-  .day-side .day-date{ font-family: var(--font-display); font-size: clamp(1.2rem, 4vw, 1.5rem); margin-top: 4px; }
-  .day-side .day-name{ font-family: var(--font-display); font-size: clamp(1rem, 3vw, 1.15rem); opacity:0.95; margin-top: 6px; }
+  .day-side .day-num{ font-size: 0.72rem; letter-spacing:0.18em; text-transform:uppercase; opacity:0.94; font-weight:700; }
+  .day-side .day-date{ font-family: var(--font-display); font-size: 1.55rem; margin-top: 4px; font-weight: 700; line-height: 1.1; }
+  .day-side .day-name{ font-family: var(--font-display); font-size: 1.18rem; opacity:0.98; margin-top: 6px; font-weight: 600; line-height: 1.25; }
 
   .day-main{ padding: clamp(20px, 4vw, 32px) clamp(16px, 4vw, 28px); position: relative; z-index: 1; }
-  .day-main h3{ font-size: clamp(1.3rem, 4vw, 1.6rem); color: var(--sage-deep); }
-  .day-main .day-desc{ margin-top: 10px; color: var(--darkink); font-size: clamp(14px, 3vw, 16px); line-height: 1.7; }
+  .day-main h3{ 
+    font-size: 1.85rem; 
+    color: var(--event-heading-color, var(--heading-event-color));
+    text-wrap: balance;
+  }
+  .day-main .day-desc{ 
+    margin-top: 10px; 
+    color: var(--event-text-color, var(--darkink)); 
+    font-size: 1rem; 
+    line-height: 1.75; 
+    font-weight: 500;
+  }
   .day-meta{ display:flex; flex-wrap:wrap; gap: clamp(16px, 4vw, 22px); margin-top: clamp(14px, 3vw, 20px); }
   .day-meta .item{ min-width: 140px; }
   .day-meta .item .k{
-    font-size: clamp(9px, 2vw, 11px); letter-spacing:0.14em; text-transform:uppercase; color: var(--sage); font-weight:700;
+    font-size: 0.72rem; letter-spacing:0.14em; text-transform:uppercase; color: var(--sage); font-weight:700;
   }
-  .day-meta .item .v{ font-size: clamp(13px, 3vw, 15px); margin-top: 4px; color: var(--ink); }
+  .day-meta .item .v{ 
+    font-size: 0.98rem; 
+    margin-top: 4px; 
+    color: var(--event-text-color, var(--ink));
+    font-weight: 600;
+    line-height: 1.45;
+  }
   
   .dress-chip{
-    display:inline-block; margin-top: clamp(10px, 2vw, 14px); padding: clamp(6px, 1vw, 8px) clamp(14px, 3vw, 18px);
-    border: 1px solid var(--gold); border-radius: 100px; font-size: clamp(11px, 2vw, 12.5px);
+    display:inline-block; margin-top: 16px; padding: 8px 16px;
+    border: 1px solid var(--gold); border-radius: 100px; font-size: 0.78rem;
     letter-spacing: 0.05em; color: var(--sage-deep); font-weight: 700;
+    line-height: 1.25;
+    background: rgba(250,246,236,0.58);
   }
 
   /* Action Buttons */
@@ -461,16 +556,18 @@
     align-items: center;
     justify-content: center;
     gap: 6px;
-    padding: clamp(7px, 1.2vw, 9px) clamp(12px, 2.5vw, 16px);
+    padding: 10px 16px;
     border: 1px solid var(--gold); 
     border-radius: 4px; 
-    font-size: clamp(10px, 2vw, 11px);
+    font-size: 0.78rem;
     letter-spacing: 0.05em; 
     color: var(--sage-deep); 
     font-weight: 700;
     background: transparent; 
     cursor: pointer;
     transition: all 0.3s ease;
+    min-height: 44px;
+    line-height: 1.2;
   }
 
   .btn-small svg{
@@ -487,7 +584,7 @@
   .hashtag-display{
     margin-top: clamp(12px, 2vw, 18px); padding: clamp(8px, 1.5vw, 12px) clamp(12px, 2.5vw, 16px);
     background: rgba(198, 161, 91, 0.15); border-radius: 4px;
-    font-size: clamp(10px, 1.8vw, 11px); color: var(--sage-deep);
+    font-size: 0.78rem; color: var(--sage-deep);
     text-align: center; cursor: pointer;
     transition: all 0.3s ease;
   }
@@ -510,89 +607,138 @@
     width: 100%; height: 100%; object-fit: cover;
   }
 
-  @media (max-width: 768px){
-    .day-card{ grid-template-columns: 1fr; }
-    .day-side{ flex-direction:row !important; align-items:baseline; gap: 10px !important; flex-wrap:wrap; }
+  /* ---------- Venue Section in Card ---------- */
+  .card-venue-section{
+    padding: clamp(20px, 4vw, 32px) clamp(16px, 4vw, 28px);
+    border-top: 1px solid var(--gold-soft);
+    position: relative;
+    z-index: 1;
+    background: rgba(255,255,255,0.58);
   }
-  @media (max-width: 480px){
-    .day-card{ grid-template-columns: 1fr; }
-    .day-side{ padding: 16px; }
-    .day-main{ padding: 16px; }
-    .day-meta .item{ min-width: 120px; }
+  html.dark-mode .card-venue-section{
+    background: rgba(0,0,0,0.2);
   }
 
-  /* ---------- Venue & Travel ---------- */
-  .venue-grid{ display:flex; flex-direction:column; gap: clamp(20px, 5vw, 28px); }
-  .venue-card{
-    border: 1px solid var(--gold-soft); border-radius: 10px; padding: clamp(24px, 5vw, 32px);
-    background: var(--ivory);
-    display:grid; grid-template-columns: 1fr 1fr; gap: clamp(24px, 5vw, 32px);
+  .card-venue-section h4{
+    font-family: var(--font-display);
+    font-size: 1.42rem;
+    color: var(--heading-venue-color);
+    margin-bottom: 8px;
+    font-weight: 700;
   }
-  html.dark-mode .venue-card{
-    background: var(--ivory-deep);
-    border-color: rgba(212, 184, 150, 0.3);
+
+  .card-venue-section .venue-info{
+    font-size: 0.98rem;
+    color: var(--darkink);
+    margin-bottom: clamp(14px, 3vw, 20px);
+    line-height: 1.65;
+    font-weight: 500;
   }
-  .venue-card h4{ font-family: var(--font-display); font-size: clamp(1.1rem, 4vw, 1.3rem); color: var(--sage-deep); }
-  .venue-card .addr{ margin-top: 8px; font-size: clamp(13px, 3vw, 15px); color: var(--darkink); }
-  .venue-card .map-wrapper{
+
+  .card-venue-maps{
+    display: grid;
+    gap: 18px;
+    align-items: start;
+  }
+
+  .card-venue-maps.single{
+    grid-template-columns: minmax(0, 760px);
+  }
+
+  .card-venue-maps.multi{
+    grid-template-columns: 1fr 1fr;
+  }
+
+  .map-wrapper{
     width: 100%;
-    height: 100%;
-    min-height: 300px;
-    border-radius: 6px;
+    height: clamp(190px, 22vw, 240px);
+    min-height: 0;
+    border-radius: 8px;
     overflow: hidden;
+    border: 1px solid var(--gold-soft);
+    background: rgba(250, 246, 236, 0.72);
+    box-shadow: 0 10px 24px rgba(21, 0, 45, 0.08);
   }
-  .venue-card .map-wrapper iframe{
+
+  .map-wrapper iframe{
     width: 100%;
     height: 100%;
     border: none;
+    display: block;
+    filter: saturate(0.86) contrast(0.96);
   }
-  .venue-card .multi-maps{
-    width: 100%;
-    display: grid;
-    grid-template-columns: 1fr 1fr;
-    gap: clamp(14px, 3vw, 22px);
+
+  .venue-item-label{
+    font-size: 0.72rem;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+    color: var(--sage);
+    font-weight: 700;
+    margin-bottom: 8px;
   }
-  .venue-card .multi-maps .map-wrapper{
-    min-height: 250px;
+
+  .venue-item-name{
+    font-size: 1rem;
+    font-weight: 700;
+    color: var(--heading-venue-color);
+    margin-bottom: 4px;
   }
-  .venue-notes{ margin-top: clamp(14px, 3vw, 18px); }
-  .venue-notes .k{ font-size: clamp(9px, 2vw, 11px); letter-spacing:0.12em; text-transform:uppercase; color: var(--sage); font-weight:700; margin-top: clamp(12px, 2vw, 16px); }
-  .venue-notes p{ font-size: clamp(13px, 2.5vw, 14.5px); margin-top: 6px; color: var(--darkink); }
-  
+
+  .venue-item-address{
+    font-size: 0.95rem;
+    color: var(--darkink);
+    line-height: 1.55;
+  }
+
   @media (max-width: 768px){
-    .venue-card{ grid-template-columns: 1fr; gap: clamp(16px, 4vw, 20px); }
-    .venue-card .map-wrapper{ min-height: 250px; }
-    .venue-card .multi-maps{
+    .day-header{ grid-template-columns: 1fr; gap: 20px; padding: 20px; }
+    .day-side{ padding: 18px; }
+    .day-main{ padding: 0; }
+    .day-main h3{ font-size: 1.6rem; }
+    .card-venue-section{ padding: 20px; }
+    .card-venue-maps.multi{
       grid-template-columns: 1fr;
     }
-    .venue-card .multi-maps .map-wrapper{
-      min-height: 250px;
-    }
+    .day-meta .item{ min-width: 120px; }
+    .map-wrapper{ height: 210px; }
   }
   @media (max-width: 480px){
-    .venue-grid{ gap: 16px; }
-    .venue-card{ padding: 16px; gap: 16px; }
+    .day-header{ grid-template-columns: 1fr; }
+    .day-side{ padding: 16px; }
+    .day-main h3{ font-size: 1.48rem; }
+    .card-venue-section{ padding: 16px; }
+    .card-venue-section h4{ font-size: 1.25rem; }
+    .map-wrapper{ height: 185px; }
+    .event-actions, .btn-small{ width: 100%; }
+    .btn-small{ justify-content: center; }
+  }
+  html.dark-mode .day-main h3{
+    color: var(--heading-event-color);
+  }
+  html.dark-mode .day-main .day-desc,
+  html.dark-mode .day-meta .item .v{
+    color: var(--darkink);
   }
 
   /* ---------- Footer ---------- */
   footer{
     text-align: center; 
     padding: clamp(36px, 8vw, 48px) clamp(16px, 4vw, 24px); 
-    color: var(--sage-deep);
+    color: var(--heading-footer-color);
     display: flex;
     flex-direction: column;
     align-items: center;
     justify-content: center;
-    background: var(--ivory);
+    background: var(--surface-warm);
   }
   html.dark-mode footer{
     background: var(--ivory-deep);
   }
 
   footer .monogram{ 
-    font-size: clamp(20px, 5vw, 26px); 
+    font-size: 1.55rem; 
     margin-bottom: clamp(14px, 3vw, 20px);
-    width: clamp(250px, 50vw, 450px);
+    width: min(76vw, 430px);
     height: auto;
     display: flex;
     align-items: center;
@@ -611,10 +757,12 @@
   }
 
   footer .thanks{ 
-    font-size: clamp(13px, 2.5vw, 15px); 
+    font-size: 1rem; 
     max-width: 520px;
     color: var(--darkink);
     margin-bottom: clamp(16px, 3vw, 20px);
+    line-height: 1.7;
+    font-weight: 500;
   }
 
   .social-share{
@@ -622,8 +770,8 @@
   }
   .social-btn{
     display: inline-flex; align-items: center; justify-content: center;
-    padding: clamp(8px, 1.5vw, 10px) clamp(12px, 2.5vw, 16px);
-    border: 1px solid var(--gold); border-radius: 50px; font-size: clamp(10px, 1.8vw, 12px);
+    padding: 10px 16px;
+    border: 1px solid var(--gold); border-radius: 50px; font-size: 0.78rem;
     color: var(--sage-deep); font-weight: 700; cursor: pointer;
     transition: all 0.3s ease;
     background: rgba(255,255,255,0.3);
@@ -665,10 +813,11 @@
   }
   
   @media (max-width: 360px){
-    body{ font-size: 14px; }
+    body{ font-size: 16px; }
     .wrap{ padding: 0 12px; }
-    .hero h1{ font-size: 1.8rem; }
+    .hero h1{ font-size: 2.35rem; }
     .countdown{ gap: 10px; margin-top: 24px; }
+    .countdown .unit{ min-width: 64px; }
   }
 </style>
 </head>
@@ -677,7 +826,7 @@
 <nav class="nav" id="nav">
   <div class="nav-inner">
     <div class="monogram" id="nav-monogram">
-      <img src="RY logo.png" alt="Logo" onerror="this.style.display='none'">
+      <img src="RY_Logo_caption.svg" alt="Logo" onerror="this.style.display='none'">
     </div>
     <button class="nav-toggle" id="navToggle" aria-label="Toggle menu" aria-expanded="false">
       <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6"><path d="M3 6h18M3 12h18M3 18h18"/></svg>
@@ -685,7 +834,6 @@
     <div class="nav-links" id="navLinks">
       <a href="#story">Our Story</a>
       <a href="#events">Celebrations</a>
-      <a href="#venue">Venue</a>
       <!-- Dark Mode Toggle -->
       <button class="dark-mode-toggle" id="darkModeToggle" aria-label="Toggle dark mode" title="Toggle dark mode">
         🌙
@@ -697,7 +845,7 @@
 <!-- ================= HERO ================= -->
 <header class="hero" id="hero">
   <div class="hero-logo">
-    <img src="your-logo.png" alt="Yadu & Rhea" onerror="this.style.display='none'">
+    <img src="RY_Logo_caption.svg" alt="Yadu & Rhea" onerror="this.style.display='none'">
   </div>
   <p class="eyebrow" id="hero-eyebrow">Together with our families</p>
   <h1 id="hero-names">Yadu <span class="amp">&amp;</span> Rhea</h1>
@@ -734,7 +882,7 @@
     <div class="story-rows">
       <div class="story-row fade-in">
         <div class="story-photo">
-          <img src="met.jpg" alt="How we met" loading="lazy" style="width: 100%; height: 100%; object-fit: cover; border-radius: 6px; display: block;">
+          <img src="met.jpg" alt="How we met" loading="lazy">
         </div>
         <div class="story-text">
           <p class="eyebrow">Chapter One</p>
@@ -744,7 +892,7 @@
       </div>
       <div class="story-row fade-in">
         <div class="story-photo">
-          <img src="proposal-1.jpeg" alt="The proposal" loading="lazy" style="width: 100%; height: 100%; object-fit: cover; border-radius: 6px; display: block;">
+          <img src="proposal-1.jpeg" alt="The proposal" loading="lazy">
         </div>
         <div class="story-text">
           <p class="eyebrow">Chapter Two</p>
@@ -765,18 +913,6 @@
       <p>Each of our families' traditions gets its own day of celebration — we'd love for you to join as many as you can.</p>
     </div>
     <div class="days" id="days-container"></div>
-  </div>
-</section>
-
-<!-- ================= VENUE & TRAVEL ================= -->
-<section id="venue">
-  <div class="wrap">
-    <div class="section-head fade-in">
-      <p class="eyebrow">Where to find us</p>
-      <h2>Venue Details</h2>
-      <p>Each celebration happens at a unique location — explore the venues and see them on the map.</p>
-    </div>
-    <div class="venue-grid" id="venue-container"></div>
   </div>
 </section>
 
@@ -833,11 +969,13 @@ const CONFIG = {
       date: "Saturday, Nov 21, 2026",
       venueName: "MJ Avyanna Resort & Convention Centre",
       venueAddress: "Jigani - Anekal Rd, Suragajakkanahalli, Bengaluru, Karnataka",
-      backgroundUrl: "bg-01.jpg",
+      googleMapsUrl: "https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3891.7413501915003!2d77.67149317507231!3d12.730289287563414!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x3bae6f32ac396a8d%3A0x16346e574f13ee0f!2sMJ%20Avyanna%20Resort%20%26%20Convention%20Centre!5e0!3m2!1sen!2sau!4v1784859181471!5m2!1sen!2sau",
       functions: [
         {
           name: "Haldi",
           accent: "turmeric",
+          headingColor: "#6d4a08",
+          textColor: "#21180f",
           description: "An afternoon of turmeric, laughter, and blessings — where both families come together for the traditional Haldi ceremony.",
           time: "3:00 PM – 5:00 PM",
           startTime: "3:00 PM",
@@ -848,6 +986,8 @@ const CONFIG = {
         {
           name: "Maduramveppu",
           accent: "madhuram",
+          headingColor: "#013001",
+          textColor: "#121b12",
           description: "A vibrant Kerala pre-wedding celebration filled with music, laughter, cherished traditions, and warm family blessings.",
           time: "6:30 PM – 9:00 PM",
           startTime: "6:30 PM",
@@ -862,12 +1002,10 @@ const CONFIG = {
       date: "Sunday, Nov 22, 2026",
       name: "Church Wedding & Reception",
       accent: "church",
-      venueName: "Wedding: St. Antony's Friary Church | Reception: St. Thomas Parish Hall",
-      venueAddress: "Wedding: 85 Hosur Road, Koramangala, Bengaluru, Karnataka | Reception: Dharmaram College, 39/2 1st Main Rd, Bengaluru, Karnataka",
+      headingColor: "#36535b",
+      textColor: "#141818",
       description: "Join us as we exchange vows at St. Antony's Church, followed by an evening reception filled with music, dinner, and celebration.",
       time: "Wedding: 3:00 PM | Reception: 6:30 PM",
-      weddingVenueName: "St. Antony's Friary Church",
-      weddingVenueAddress: "85 Hosur Road, Koramangala, Bengaluru, Karnataka",
       startTime: "3:00 PM",
       endTime: "5:00 PM",
       multiVenue: true,
@@ -885,7 +1023,6 @@ const CONFIG = {
           googleMapsUrl: "https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3888.63321908247!2d77.6027804!3d12.9312793!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x3bae15adcea908bf%3A0x497417fbf176f129!2sSt.%20Thomas%20Parish%20Hall!5e0!3m2!1sen!2sau!4v1784094388592!5m2!1sen!2sau"
         }
       ],
-      backgroundUrl: "",
       dressCode: "Cocktail / Traditional Indian attire",
       dressCodeImages: []
     },
@@ -894,27 +1031,17 @@ const CONFIG = {
       date: "Saturday, Nov 28, 2026",
       name: "Hindu Wedding Ceremony",
       accent: "royalblue",
+      headingColor: "#10483e",
+      textColor: "#111918",
       description: "A traditional Hindu wedding ceremony with sacred rituals, blessings from elders, and the joining of two families under one mandap.",
       time: "11:30 AM – 2:30 PM",
       startTime: "11:30 AM",
       endTime: "2:30 PM",
       venueName: "The Brook Serene",
       venueAddress: "Kottiyam, Kollam, Kerala",
-      backgroundUrl: "",
+      googleMapsUrl: "https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3942.312885894337!2d76.675422!3d8.8504342!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x3b05e49ab739c129%3A0xc4dce99037f8721c!2sThe%20Brook%20Serene!5e0!3m2!1sen!2sau!4v1784091035650!5m2!1sen!2sau",
       dressCode: "Traditional Indian attire",
       dressCodeImages: []
-    }
-  ],
-
-  venueNotes: [
-    {
-      googleMapsUrl: "https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3891.7403970737!2d77.67409459999999!3d12.7303514!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x3bae6f32ac396a8d%3A0x16346e574f13ee0f!2sMJ%20Avyanna%20Resort%20%26%20Convention%20Centre!5e0!3m2!1sen!2sau!4v1783650793862!5m2!1sen!2sau"
-    },
-    {
-      googleMapsUrl: "https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3888.651804495334!2d77.61171517577262!3d12.93008658738149!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x3bae145ba859c02b%3A0xe39cbb479e2cbffe!2sSt%20Anthony&#39;s%20Friary%20Church!5e0!3m2!1sen!2sau!4v1784091839098!5m2!1sen!2sau" 
-    },
-    { 
-      googleMapsUrl: "https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3942.312885894337!2d76.675422!3d8.8504342!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x3b05e49ab739c129%3A0xc4dce99037f8721c!2sThe%20Brook%20Serene!5e0!3m2!1sen!2sau!4v1784091035650!5m2!1sen!2sau" 
     }
   ]
 };
@@ -1064,9 +1191,10 @@ CONFIG.days.forEach((d, i) => {
       const card = document.createElement('div');
       card.className = 'day-card fade-in';
       card.setAttribute('data-accent', func.accent || d.accent);
-      if (d.backgroundUrl) {
-        card.style.setProperty('--bg-image', `url('${d.backgroundUrl}')`);
-      }
+      
+      // Set CSS variables for custom colors
+      card.style.setProperty('--event-heading-color', func.headingColor || d.headingColor || 'var(--heading-event-color)');
+      card.style.setProperty('--event-text-color', func.textColor || d.textColor || 'var(--darkink)');
       
       // Store calendar event data
       const eventId = `event_${eventCounter}`;
@@ -1080,34 +1208,47 @@ CONFIG.days.forEach((d, i) => {
       eventCounter++;
       
       card.innerHTML = `
-        <div class="day-side">
-          <span class="day-num">${d.dayLabel}${d.functions.length > 1 ? ` - ${fIdx + 1}` : ''}</span>
-          <span class="day-date">${d.date}</span>
-          <span class="day-name">${func.name}</span>
+        <div class="day-header">
+          <div class="day-side">
+            <span class="day-num">${d.dayLabel}${d.functions.length > 1 ? ` - ${fIdx + 1}` : ''}</span>
+            <span class="day-date">${d.date}</span>
+            <span class="day-name">${func.name}</span>
+          </div>
+          <div class="day-main">
+            <h3>${func.name}</h3>
+            <p class="day-desc">${func.description}</p>
+            <div class="day-meta">
+              <div class="item"><div class="k">Time</div><div class="v">${func.time}</div></div>
+              <div class="item"><div class="k">Venue</div><div class="v">${d.venueName}</div></div>
+            </div>
+            <div class="dress-chip">Dress Code: ${func.dressCode}</div>
+            <div class="event-actions">
+              <button class="btn-small" onclick="addToCalendar('${eventId}')">
+                <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 640 640" aria-hidden="true">
+                  <path d="M224 64C206.3 64 192 78.3 192 96L192 128L160 128C124.7 128 96 156.7 96 192L96 240L544 240L544 192C544 156.7 515.3 128 480 128L448 128L448 96C448 78.3 433.7 64 416 64C398.3 64 384 78.3 384 96L384 128L256 128L256 96C256 78.3 241.7 64 224 64zM96 288L96 480C96 515.3 124.7 544 160 544L480 544C515.3 544 544 515.3 544 480L544 288L96 288z"/>
+                </svg>
+                Add to Calendar
+              </button>
+            </div>
+            ${func.dressCodeImages && func.dressCodeImages.length > 0 ? `
+              <div class="dress-code-ref">
+                ${func.dressCodeImages.map(img => `
+                  <div class="dress-ref-img">
+                    <img src="${img}" alt="Dress code reference" loading="lazy">
+                  </div>
+                `).join('')}
+              </div>
+            ` : ''}
+          </div>
         </div>
-        <div class="day-main">
-          <h3>${func.name}</h3>
-          <p class="day-desc">${func.description}</p>
-          <div class="day-meta">
-            <div class="item"><div class="k">Time</div><div class="v">${func.time}</div></div>
-            <div class="item"><div class="k">Venue</div><div class="v">${d.venueName}</div></div>
-          </div>
-          <div class="dress-chip">Dress Code: ${func.dressCode}</div>
-          <div class="event-actions">
-            <button class="btn-small" onclick="addToCalendar('${eventId}')">
-              <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 640 640" aria-hidden="true">
-                <path d="M224 64C206.3 64 192 78.3 192 96L192 128L160 128C124.7 128 96 156.7 96 192L96 240L544 240L544 192C544 156.7 515.3 128 480 128L448 128L448 96C448 78.3 433.7 64 416 64C398.3 64 384 78.3 384 96L384 128L256 128L256 96C256 78.3 241.7 64 224 64zM96 288L96 480C96 515.3 124.7 544 160 544L480 544C515.3 544 544 515.3 544 480L544 288L96 288z"/>
-              </svg>
-              Add to Calendar
-            </button>
-          </div>
-          ${func.dressCodeImages && func.dressCodeImages.length > 0 ? `
-            <div class="dress-code-ref">
-              ${func.dressCodeImages.map(img => `
-                <div class="dress-ref-img">
-                  <img src="${img}" alt="Dress code reference" loading="lazy">
-                </div>
-              `).join('')}
+        <div class="card-venue-section">
+          <h4>${d.venueName}</h4>
+          <p class="venue-info">${d.venueAddress}</p>
+          ${d.googleMapsUrl ? `
+            <div class="card-venue-maps single">
+              <div class="map-wrapper">
+                <iframe src="${d.googleMapsUrl}" allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>
+              </div>
             </div>
           ` : ''}
         </div>
@@ -1118,18 +1259,18 @@ CONFIG.days.forEach((d, i) => {
     const card = document.createElement('div');
     card.className = 'day-card fade-in';
     card.setAttribute('data-accent', d.accent);
-    if (d.backgroundUrl) {
-      card.style.setProperty('--bg-image', `url('${d.backgroundUrl}')`);
-    }
+    
+    // Set CSS variables for custom colors
+    card.style.setProperty('--event-heading-color', d.headingColor || 'var(--heading-event-color)');
+    card.style.setProperty('--event-text-color', d.textColor || 'var(--darkink)');
     
     // For Day 2 (Wedding + Reception), use wedding venue and time only for calendar
-    const calendarVenue = d.weddingVenueName || d.venueName;
-    const displayName = d.weddingVenueName ? 'Wedding Ceremony' : d.name;
+    const calendarVenue = d.multiVenue && d.venues ? d.venues[0].venueName : d.venueName;
     
     // Store calendar event data
     const eventId = `event_${eventCounter}`;
     calendarEvents[eventId] = {
-      eventName: displayName,
+      eventName: d.name,
       date: d.date,
       startTime: d.startTime,
       endTime: d.endTime,
@@ -1137,111 +1278,79 @@ CONFIG.days.forEach((d, i) => {
     };
     eventCounter++;
     
-    card.innerHTML = `
-      <div class="day-side">
-        <span class="day-num">${d.dayLabel}</span>
-        <span class="day-date">${d.date}</span>
-        <span class="day-name">${d.name}</span>
-      </div>
-      <div class="day-main">
-        <h3>${d.name}</h3>
-        <p class="day-desc">${d.description}</p>
-        <div class="day-meta">
-          <div class="item"><div class="k">Time</div><div class="v">${d.time}</div></div>
-          <div class="item"><div class="k">Venue</div><div class="v">${d.venueName}</div></div>
-        </div>
-        <div class="dress-chip">Dress Code: ${d.dressCode}</div>
-        <div class="event-actions">
-          <button class="btn-small" onclick="addToCalendar('${eventId}')">
-            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 640 640" aria-hidden="true">
-              <path d="M224 64C206.3 64 192 78.3 192 96L192 128L160 128C124.7 128 96 156.7 96 192L96 240L544 240L544 192C544 156.7 515.3 128 480 128L448 128L448 96C448 78.3 433.7 64 416 64C398.3 64 384 78.3 384 96L384 128L256 128L256 96C256 78.3 241.7 64 224 64zM96 288L96 480C96 515.3 124.7 544 160 544L480 544C515.3 544 544 515.3 544 480L544 288L96 288z"/>
-            </svg>
-            Add to Calendar
-          </button>
-        </div>
-        ${d.dressCodeImages && d.dressCodeImages.length > 0 ? `
-          <div class="dress-code-ref">
-            ${d.dressCodeImages.map(img => `
-              <div class="dress-ref-img">
-                <img src="${img}" alt="Dress code reference" loading="lazy">
+    let venueSection = '';
+    
+    if (d.multiVenue && d.venues && d.venues.length > 0) {
+      venueSection = `
+        <div class="card-venue-section">
+          <h4>${d.name}</h4>
+          <div class="card-venue-maps multi">
+            ${d.venues.map(v => `
+              <div>
+                <div class="venue-item-label">${v.type}</div>
+                <div class="venue-item-name">${v.venueName}</div>
+                <div class="venue-item-address">${v.venueAddress}</div>
+                <div class="map-wrapper" style="margin-top: 12px;">
+                  <iframe src="${v.googleMapsUrl}" allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>
+                </div>
               </div>
             `).join('')}
           </div>
-        ` : ''}
-      </div>
-    `;
-    daysContainer.appendChild(card);
-  }
-});
-
-// Render venue cards
-const venueContainer = document.getElementById('venue-container');
-CONFIG.days.forEach((d, i) => {
-  const notes = CONFIG.venueNotes[i] || {};
-  const card = document.createElement('div');
-  card.className = 'venue-card fade-in';
-  
-  if (d.multiVenue && d.venues && d.venues.length > 0) {
-    let venueLeftContent = `
-      <div>
-        <p class="eyebrow">${d.dayLabel} · ${d.date}</p>
-        <h4>${d.name}</h4>
-        <p style="font-size: clamp(13px, 3vw, 15px); margin-top: 14px; color: var(--sage); font-weight: 700;">Venues:</p>
-    `;
-    
-    d.venues.forEach(v => {
-      venueLeftContent += `
-        <div style="margin-top: 18px;">
-          <p style="font-size: clamp(11px, 2vw, 12px); font-weight: 700; text-transform: uppercase; color: var(--sage-deep);">${v.type}</p>
-          <p style="font-size: clamp(12px, 3vw, 14px); font-weight: 600; margin-top: 6px;">${v.venueName}</p>
-          <p style="font-size: clamp(12px, 3vw, 14px); margin-top: 4px; color: var(--darkink);">${v.venueAddress}</p>
-        </div>
-      `;
-    });
-    
-    venueLeftContent += `</div>`;
-    
-    let mapsContent = '<div class="multi-maps">';
-    d.venues.forEach(v => {
-      mapsContent += `
-        <div class="map-wrapper">
-          <iframe src="${v.googleMapsUrl}" allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>
-        </div>
-      `;
-    });
-    mapsContent += '</div>';
-    
-    card.innerHTML = `${venueLeftContent}${mapsContent}`;
-  } else {
-    let venueRightContent = '';
-    const venueName = d.venueName || (d.venues && d.venues[0] ? d.venues[0].venueName : 'Venue');
-    const venueAddress = d.venueAddress || (d.venues && d.venues[0] ? d.venues[0].venueAddress : '');
-    const googleMapsUrl = notes.googleMapsUrl || (d.venues && d.venues[0] ? d.venues[0].googleMapsUrl : '');
-    
-    if (googleMapsUrl) {
-      venueRightContent = `
-        <div class="map-wrapper">
-          <iframe src="${googleMapsUrl}" allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>
         </div>
       `;
     } else {
-      venueRightContent = `<div class="photo-slot">Venue location / Map</div>`;
+      venueSection = `
+        <div class="card-venue-section">
+          <h4>${d.venueName}</h4>
+          <p class="venue-info">${d.venueAddress}</p>
+          ${d.googleMapsUrl ? `
+            <div class="card-venue-maps single">
+              <div class="map-wrapper">
+                <iframe src="${d.googleMapsUrl}" allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>
+              </div>
+            </div>
+          ` : ''}
+        </div>
+      `;
     }
     
     card.innerHTML = `
-      <div>
-        <p class="eyebrow">${d.dayLabel} · ${d.date}</p>
-        <h4>${venueName}</h4>
-        <p class="addr">${venueAddress}</p>
-        <div class="venue-notes">
-          ${notes.accommodation ? `<div class="k">Accommodation</div><p>${notes.accommodation}</p>` : ''}
+      <div class="day-header">
+        <div class="day-side">
+          <span class="day-num">${d.dayLabel}</span>
+          <span class="day-date">${d.date}</span>
+          <span class="day-name">${d.name}</span>
+        </div>
+        <div class="day-main">
+          <h3>${d.name}</h3>
+          <p class="day-desc">${d.description}</p>
+          <div class="day-meta">
+            <div class="item"><div class="k">Time</div><div class="v">${d.time}</div></div>
+          </div>
+          <div class="dress-chip">Dress Code: ${d.dressCode}</div>
+          <div class="event-actions">
+            <button class="btn-small" onclick="addToCalendar('${eventId}')">
+              <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 640 640" aria-hidden="true">
+                <path d="M224 64C206.3 64 192 78.3 192 96L192 128L160 128C124.7 128 96 156.7 96 192L96 240L544 240L544 192C544 156.7 515.3 128 480 128L448 128L448 96C448 78.3 433.7 64 416 64C398.3 64 384 78.3 384 96L384 128L256 128L256 96C256 78.3 241.7 64 224 64zM96 288L96 480C96 515.3 124.7 544 160 544L480 544C515.3 544 544 515.3 544 480L544 288L96 288z"/>
+              </svg>
+              Add to Calendar
+            </button>
+          </div>
+          ${d.dressCodeImages && d.dressCodeImages.length > 0 ? `
+            <div class="dress-code-ref">
+              ${d.dressCodeImages.map(img => `
+                <div class="dress-ref-img">
+                  <img src="${img}" alt="Dress code reference" loading="lazy">
+                </div>
+              `).join('')}
+            </div>
+          ` : ''}
         </div>
       </div>
-      ${venueRightContent}
+      ${venueSection}
     `;
+    daysContainer.appendChild(card);
   }
-  
-  venueContainer.appendChild(card);
 });
 
 // Countdown
@@ -1293,7 +1402,10 @@ navToggle.addEventListener('click', () => {
   const isOpen = navLinks.classList.toggle('open');
   navToggle.setAttribute('aria-expanded', isOpen);
 });
-navLinks.querySelectorAll('a').forEach(a => a.addEventListener('click', () => navLinks.classList.remove('open')));
+navLinks.querySelectorAll('a').forEach(a => a.addEventListener('click', () => {
+  navLinks.classList.remove('open');
+  navToggle.setAttribute('aria-expanded', 'false');
+}));
 
 // Social Share Buttons
 document.getElementById('shareInstagram').addEventListener('click', function() {
