@@ -4,6 +4,20 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>DilHaaRheYa - 2026</title>
+<meta name="description" content="Join Yadu and Rhea for their wedding celebrations across Bangalore and Kollam in November 2026.">
+<meta name="theme-color" content="#FAF6EC">
+<meta property="og:type" content="website">
+<meta property="og:title" content="Yadu & Rhea Wedding - 2026">
+<meta property="og:description" content="Two families, two traditions, and one love story. Celebrate with Yadu and Rhea in November 2026.">
+<meta property="og:image" content="bg-01.jpg">
+<meta property="og:image:alt" content="Yadu and Rhea walking together on the beach at sunset">
+<meta property="og:site_name" content="DilHaaRheYa">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:title" content="Yadu & Rhea Wedding - 2026">
+<meta name="twitter:description" content="Two families, two traditions, and one love story. Celebrate with Yadu and Rhea in November 2026.">
+<meta name="twitter:image" content="bg-01.jpg">
+<link rel="icon" type="image/svg+xml" href="RY_Logo_caption.svg">
+<link rel="apple-touch-icon" href="RY%20Logo.png">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,600;0,700;1,600&family=Karla:wght@400;500;600;700&display=swap" rel="stylesheet">
@@ -544,7 +558,7 @@
     border: 1px solid var(--gold); border-radius: 100px; font-size: 0.78rem;
     letter-spacing: 0.05em; color: var(--sage-deep); font-weight: 700;
     line-height: 1.25;
-    background: rgba(250,246,236,0.58);
+    background: none;
   }
 
   /* Action Buttons */
@@ -948,8 +962,8 @@ const CONFIG = {
   
   hashtag: "#DilHaaRheYa",
   
-  heroBackgroundUrl: "bg-01.jpg",
   countdownTarget: "2026-11-22T15:00:00+05:30",
+  calendarTimeZone: "Asia/Kolkata",
   customDateline: "Nov 21 & 22, 2026 in Bangalore | Nov 28, 2026 in Kollam",
 
   story: {
@@ -980,8 +994,8 @@ const CONFIG = {
           time: "3:00 PM – 5:00 PM",
           startTime: "3:00 PM",
           endTime: "5:00 PM",
-          dressCode: "Yellow & Mustard tones",
-          dressCodeImages: ["haldi-dress-1.png", "haldi-dress-2.jpg"]
+          dressCode: "Traditional Kerala attire (perfect for both celebrations",
+          dressCodeImages: ["madhuram-01.jpg", "madhuram-02.jpg", "madhuram-03.jpg", "madhuram-04.jpg", "madhuram-05.jpg"]
         },
         {
           name: "Maduramveppu",
@@ -992,8 +1006,8 @@ const CONFIG = {
           time: "6:30 PM – 9:00 PM",
           startTime: "6:30 PM",
           endTime: "9:00 PM",
-          dressCode: "Traditional Kerala attire",
-          dressCodeImages: ["madhuram-01.jpg", "madhuram-03.jpg"]
+          dressCode: "Traditional Kerala attire (perfect for both celebrations)",
+          dressCodeImages: ["madhuram-01.jpg", "madhuram-02.jpg", "madhuram-03.jpg", "madhuram-04.jpg", "madhuram-05.jpg"]
         }
       ]
     },
@@ -1172,7 +1186,7 @@ function addToCalendar(eventId) {
     let venueClean = venue.replace(/<[^>]*>/g, '').split('|')[0].trim();
     
     // Build Google Calendar URL
-    const calendarUrl = `https://calendar.google.com/calendar/render?action=TEMPLATE&text=${encodeURIComponent(eventName)}&dates=${formattedStart}/${formattedEnd}&location=${encodeURIComponent(venueClean)}&details=${encodeURIComponent(CONFIG.hashtag)}`;
+    const calendarUrl = `https://calendar.google.com/calendar/render?action=TEMPLATE&text=${encodeURIComponent(eventName)}&dates=${formattedStart}/${formattedEnd}&ctz=${encodeURIComponent(CONFIG.calendarTimeZone)}&location=${encodeURIComponent(venueClean)}&details=${encodeURIComponent(CONFIG.hashtag)}`;
     
     console.log('✓ Added to calendar:', eventName, 'at', venueClean);
     window.open(calendarUrl, '_blank');
@@ -1247,7 +1261,7 @@ CONFIG.days.forEach((d, i) => {
           ${d.googleMapsUrl ? `
             <div class="card-venue-maps single">
               <div class="map-wrapper">
-                <iframe src="${d.googleMapsUrl}" allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>
+                <iframe title="Map to ${d.venueName}" src="${d.googleMapsUrl}" allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>
               </div>
             </div>
           ` : ''}
@@ -1291,7 +1305,7 @@ CONFIG.days.forEach((d, i) => {
                 <div class="venue-item-name">${v.venueName}</div>
                 <div class="venue-item-address">${v.venueAddress}</div>
                 <div class="map-wrapper" style="margin-top: 12px;">
-                  <iframe src="${v.googleMapsUrl}" allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>
+                  <iframe title="Map to ${v.venueName}" src="${v.googleMapsUrl}" allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>
                 </div>
               </div>
             `).join('')}
@@ -1306,7 +1320,7 @@ CONFIG.days.forEach((d, i) => {
           ${d.googleMapsUrl ? `
             <div class="card-venue-maps single">
               <div class="map-wrapper">
-                <iframe src="${d.googleMapsUrl}" allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>
+                <iframe title="Map to ${d.venueName}" src="${d.googleMapsUrl}" allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>
               </div>
             </div>
           ` : ''}
